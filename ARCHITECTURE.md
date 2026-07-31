@@ -4,7 +4,7 @@
 
 | Concern | Choice |
 |---|---|
-| Framework | Next.js 15 |
+| Framework | Next.js 16 |
 | Language | TypeScript (strict) |
 | UI | React 19, Tailwind CSS v4, shadcn/ui |
 | Icons | Lucide |
@@ -19,7 +19,7 @@
 
 ```
 apps/
-  corporate/        undasolutions.com — the only app scaffolded today
+  web/              undasolutions.com — the only app scaffolded today
 packages/            shared code — created only once a pattern proves reusable (see DECISIONS.md)
 docs/                supplementary documentation
 infrastructure/      deployment and infra config
@@ -40,7 +40,7 @@ Every feature in this repo should satisfy:
 ## Current state
 
 - Monorepo tooling: initialized (pnpm + Turborepo).
-- `packages/` is intentionally empty. Shared UI/design-system packages are extracted only after real reuse emerges from `apps/corporate` — this repo follows a "build first, abstract second" approach.
+- `packages/` is intentionally empty. Shared UI/design-system packages are extracted only after real reuse emerges from `apps/web` — this repo follows a "build first, abstract second" approach.
 - Only the corporate site is in active development. Studio, Technologies, Travel, and Docs applications are not started.
 
 This document should be updated whenever the architecture changes.

@@ -21,7 +21,7 @@ docs/            supplementary documentation
 infrastructure/  deployment and infra config
 ```
 
-Only `apps/corporate` is planned right now. Other divisions (`studio`, `technologies`, `travel`, `docs`) are future applications and are not scaffolded until requested — see [ROADMAP.md](./ROADMAP.md).
+Only `apps/web` is planned right now. Other divisions (`studio`, `technologies`, `travel`, `docs`) are future applications and are not scaffolded until requested — see [ROADMAP.md](./ROADMAP.md).
 
 ## Getting started
 

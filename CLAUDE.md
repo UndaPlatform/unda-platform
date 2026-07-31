@@ -107,7 +107,7 @@ Current
 
 ```
 apps/
-└── corporate/
+└── web/
 ```
 
 Future
@@ -160,7 +160,7 @@ Do not scaffold these packages speculatively. Extract into `packages/` only once
 
 Framework
 
-Next.js 15
+Next.js 16
 
 Language
 
@@ -426,7 +426,7 @@ Focus entirely on creating the best possible corporate website and engineering f
 
 1. Initialize the monorepo.
 2. Configure tooling.
-3. Build the corporate application.
+3. Scaffold the `apps/web` application (the corporate website).
 4. Build out the corporate website (pages, sections, content).
 5. Extract shared packages (`packages/ui`, `packages/design-system`) — only once reusable patterns emerge from real usage.
 6. Prepare for deployment on Vercel.
