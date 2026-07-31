@@ -9,8 +9,8 @@ export default function Home() {
           Unda Studio
         </h1>
         <p className="text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-          Brand identity, product design, UI/UX, graphic design, motion design, photography, and
-          video editing.
+          Brand identity, Product design, UI/UX, Graphic design, Motion design, 3D Modelling and
+          Video editing.
         </p>
       </main>
     </div>
