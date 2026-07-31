@@ -11,10 +11,10 @@ Building [undasolutions.com](https://undasolutions.com) and the engineering foun
 3. ✅ **Configure tooling** — Biome, strict base `tsconfig.json`, CI (GitHub Actions).
 4. ✅ **Scaffold the web app** — Next.js 16 + React 19 + Tailwind v4 under `apps/web`.
 5. ✅ **Scaffold placeholder apps** — minimal "coming soon" apps for `studio`, `technologies`, `travel`, `docs`, ahead of the normal build-first order, so each subdomain has a Vercel project to attach to (ADR-007).
-6. ⬜ **Configure Vercel projects and domains** — `undasolutions.com` plus the four subdomains, on a new Vercel account.
+6. ✅ **Configure Vercel projects and domains** — all 5 apps have Vercel projects (`unda-solutions1` team), connected to GitHub for auto-deploy, with `undasolutions.com` + `www` + the four subdomains attached and live (ADR-008).
 7. ⬜ **Build the corporate website** — pages, sections, content for `apps/web`.
 8. ⬜ **Extract shared packages** — `packages/ui` and `packages/design-system`, only once patterns repeat across real usage.
-9. ⬜ **Prepare for Vercel deployment** of `apps/web`.
+9. ⬜ **Ongoing**: every push to `main` now auto-deploys all 5 apps — no separate "prepare for deployment" step remains.
 
 ## Explicitly out of scope for now
 
