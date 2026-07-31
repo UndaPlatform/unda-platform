@@ -19,11 +19,17 @@
 
 ```
 apps/
-  web/              undasolutions.com — the only app scaffolded today
+  web/              undasolutions.com — corporate site, in active development
+  studio/           studio.undasolutions.com — placeholder ("coming soon"), no real content yet
+  technologies/     technologies.undasolutions.com — placeholder ("coming soon"), no real content yet
+  travel/           travel.undasolutions.com — placeholder ("coming soon"), no real content yet
+  docs/             docs.undasolutions.com — placeholder ("coming soon"), no real content yet
 packages/            shared code — created only once a pattern proves reusable (see DECISIONS.md)
 docs/                supplementary documentation
 infrastructure/      deployment and infra config
 ```
+
+The four placeholder apps were scaffolded ahead of the roadmap's normal build-first order specifically to give Vercel domains something to attach to (ADR-007). Each mirrors `apps/web`'s tooling setup (extends the root `tsconfig.base.json` and `biome.json`, pinned to the same Next.js/React/TypeScript versions) but has no business logic — just a single "coming soon" page.
 
 `pnpm-workspace.yaml` declares `apps/*` and `packages/*` as workspace globs. `turbo.json` defines the task pipeline (`build`, `dev`, `lint`, `check-types`) with dependency-aware caching across the workspace.
 
@@ -41,6 +47,6 @@ Every feature in this repo should satisfy:
 
 - Monorepo tooling: initialized (pnpm + Turborepo).
 - `packages/` is intentionally empty. Shared UI/design-system packages are extracted only after real reuse emerges from `apps/web` — this repo follows a "build first, abstract second" approach.
-- Only the corporate site is in active development. Studio, Technologies, Travel, and Docs applications are not started.
+- Only the corporate site (`apps/web`) is in active development. Studio, Technologies, Travel, and Docs are scaffolded placeholders with no real content — ahead of schedule for Vercel domain setup (ADR-007), not a signal to start building them out.
 
 This document should be updated whenever the architecture changes.

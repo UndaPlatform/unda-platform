@@ -103,28 +103,18 @@ infrastructure/
 
 # Applications
 
-Current
-
 ```
 apps/
-└── web/
+├── web/            undasolutions.com          — corporate site, in active development
+├── studio/         studio.undasolutions.com   — placeholder, scaffolded ahead of schedule for domain/Vercel setup
+├── technologies/   technologies.undasolutions.com — placeholder, scaffolded ahead of schedule for domain/Vercel setup
+├── travel/         travel.undasolutions.com   — placeholder, scaffolded ahead of schedule for domain/Vercel setup
+└── docs/           docs.undasolutions.com     — placeholder, scaffolded ahead of schedule for domain/Vercel setup
 ```
 
-Future
+`studio`, `technologies`, `travel`, and `docs` are minimal "coming soon" placeholders — Next.js apps with no real content, features, or business logic. They exist only so each subdomain has a Vercel project to attach to (ADR-007). Do not build out real content or features into them until explicitly requested; only `apps/web` is in active development.
 
-```
-studio/
-
-technologies/
-
-travel/
-
-docs/
-```
-
-Only build what is necessary today.
-
-Never create future applications until requested.
+Only build what is necessary today. Never create new applications beyond this set until requested.
 
 ---
 
@@ -416,7 +406,7 @@ Do NOT build:
 - Authentication
 - Dashboard
 
-unless requested.
+unless requested. This includes real content or features for the `studio`, `technologies`, `travel`, and `docs` placeholder apps — they exist only to hold a Vercel domain, not as a green light to build them out.
 
 Focus entirely on creating the best possible corporate website and engineering foundation.
 
@@ -427,9 +417,11 @@ Focus entirely on creating the best possible corporate website and engineering f
 1. Initialize the monorepo.
 2. Configure tooling.
 3. Scaffold the `apps/web` application (the corporate website).
-4. Build out the corporate website (pages, sections, content).
-5. Extract shared packages (`packages/ui`, `packages/design-system`) — only once reusable patterns emerge from real usage.
-6. Prepare for deployment on Vercel.
+4. Scaffold placeholder apps (`studio`, `technologies`, `travel`, `docs`) for Vercel domain attachment.
+5. Configure Vercel projects and domains for `undasolutions.com` and its subdomains.
+6. Build out the corporate website (pages, sections, content).
+7. Extract shared packages (`packages/ui`, `packages/design-system`) — only once reusable patterns emerge from real usage.
+8. Prepare for deployment on Vercel.
 
 Everything else comes later.
 

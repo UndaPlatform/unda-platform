@@ -21,7 +21,7 @@ docs/            supplementary documentation
 infrastructure/  deployment and infra config
 ```
 
-Only `apps/web` is planned right now. Other divisions (`studio`, `technologies`, `travel`, `docs`) are future applications and are not scaffolded until requested — see [ROADMAP.md](./ROADMAP.md).
+`apps/web` (undasolutions.com) is the only app in active development. `studio`, `technologies`, `travel`, and `docs` are scaffolded as minimal "coming soon" placeholders so each subdomain has a Vercel project to attach to — they have no real content or features yet, and won't until requested — see [ROADMAP.md](./ROADMAP.md).
 
 ## Getting started
 

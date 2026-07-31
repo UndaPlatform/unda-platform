@@ -73,3 +73,15 @@ Format: each entry records context, the decision, and consequences. Entries are 
 **Decision:** Pin `typescript` to `^6.0.3` across the whole workspace (root and `apps/web`). Do not enable `experimental.useTypeScriptCli`. Stability and long-term maintainability of the foundation take priority over adopting the newest TypeScript major before the ecosystem (Next.js included) has caught up to its new compiler API.
 
 **Consequences:** The workspace type-checks and builds cleanly on the standard, fully-supported TypeScript 6 compiler API. Revisit this once Next.js officially supports TypeScript 7's compiler API without an experimental flag.
+
+---
+
+## ADR-007: Scaffold placeholder apps for all divisions ahead of the normal build order
+
+**Date:** 2026-07-31
+
+**Context:** CLAUDE.md's default rule is "never create future applications until requested," and the roadmap's original order was to fully build `apps/web` before touching Studio/Technologies/Travel/Docs. The user explicitly asked, before starting on website design/content, to configure Vercel for `undasolutions.com` and its four subdomains. Vercel domains attach to a project, and a project needs a deployable app — there was nothing to attach `studio.undasolutions.com` etc. to. The user was asked whether to configure Vercel for `apps/web` only (deferring the rest) or scaffold placeholders for all four subdomains now, and chose the latter.
+
+**Decision:** Scaffold minimal "coming soon" Next.js apps for `studio`, `technologies`, `travel`, and `docs` now — each wired into the shared tooling (root `tsconfig.base.json`, root `biome.json` via `extends` + `root: false`, same Next.js 16 / React 19 / TypeScript 6.0.3 / Tailwind v4 versions as `apps/web`) but with no real content, features, or business logic beyond a single placeholder page. This is an explicit, requested exception to "build first, abstract second" — it does not change the rule for any future 6th app.
+
+**Consequences:** All five apps in `apps/*` build, lint, and type-check clean as of this ADR. `studio`/`technologies`/`travel`/`docs` must not receive real content, sections, or features until separately requested — CLAUDE.md's "Current Project Goal" and "Applications" sections were updated to state this explicitly, so a future session doesn't mistake their existence for a green light to build them out.
