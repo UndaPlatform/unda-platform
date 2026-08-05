@@ -4,7 +4,7 @@ The single source of design truth for the entire Unda ecosystem — Unda Solutio
 
 This is not a Figma library. It's an AI-first knowledge base meant to be read by Claude Code, designers, frontend engineers, product managers, and AI agents alike, so that no future project has to invent a color, a spacing value, a component, or a page pattern from scratch.
 
-> **Status:** the 8-phase build is complete — see [Build status](#build-status) below. A handful of supplementary reference folders (`layouts/`, `motion/`, `icons/`, `illustrations/`, `accessibility/`, `prompts/`, `templates/`, `examples/`, `checklists/` under `design-system/`, plus `products/<division>/`) remain intentional stubs — see [`design-system/index.md`](./design-system/index.md) for why.
+> **Status:** the original 8-phase build is complete, plus a full [Brand Expression System](./brand-expression/README.md) (photography, illustration, motion, graphic language, data viz, marketing, and physical brand-in-practice standards) — see [Build status](#build-status) below. A handful of supplementary reference folders (`layouts/`, `motion/`, `icons/`, `illustrations/`, `accessibility/`, `prompts/`, `templates/`, `examples/`, `checklists/` under `design-system/`, plus `products/<division>/`) remain intentional stubs — see [`design-system/index.md`](./design-system/index.md) for why.
 
 ## Why this exists
 
@@ -37,6 +37,9 @@ unda-design-os/
 │   ├── templates/          Starter templates (component doc template, ADR template, ...)
 │   ├── examples/           Worked examples showing the system applied
 │   └── checklists/         Pre-launch / pre-PR checklists
+├── brand-expression/       How the brand behaves across every touchpoint — photography,
+│   ├── manual/             illustration, motion, graphic language, data viz, marketing,
+│   └── specification/      presentations, and physical brand-in-practice standards
 └── products/               Division-specific notes layered on top of the shared system
     ├── solutions/          Unda Solutions (corporate)
     ├── studio/             Unda Studio
@@ -84,6 +87,7 @@ See `brand/governance.md` and `design-system/rules/` for the standards new addit
 | 6. Engineering | ✅ Complete — sourced from *Design System v1.0* §VI–VII |
 | 7. `CLAUDE.md` | ✅ Complete — sourced from *Design System v1.0* §VIII |
 | 8. This README | ✅ Complete — finalized now that all prior phases have landed |
+| 9. Brand Expression System | ✅ Complete — see [`brand-expression/`](./brand-expression/README.md); full scope including physical touchpoints, per ADR-013 |
 
 > Foundations and the initial `creative-direction/`/`design-system/tokens/` drafts began from a pasted excerpt of the Brand Foundation Manual, which described design choices (Royal Blue, General Sans/Geist/Geist Mono, 8pt grid) without literal values. The full source PDFs — *Creative Direction v1.0* and *Design System v1.0* — were subsequently located and read in full. Every phase from `creative-direction/` onward is built directly from their literal content (OKLCH color values, exact type/spacing/motion scales, a ~20-entry component library with full state/accessibility/engineering specs, Figma library architecture, engineering handoff, and an explicit AI Design Rules section) rather than reconstructed or invented. See `../DECISIONS.md` (ADR-009, ADR-010, ADR-011) for the full history of this decision.
 
