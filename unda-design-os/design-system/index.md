@@ -19,7 +19,7 @@ The implementable layer: foundations, tokens, components, patterns, and the rule
 | [accessibility/](./accessibility/index.md) | ⬜ Not started | Testing checklists, accessible interaction patterns |
 | [engineering/](./engineering/index.md) | ⬜ Not started | React/Next.js/Tailwind/TypeScript implementation guidance |
 | [prompts/](./prompts/index.md) | ⬜ Not started | AI-agent prompt templates for using this OS |
-| [rules/](./rules/index.md) | ⬜ Not started | Hard rules across layout, spacing, naming, content, etc. |
+| [rules/](./rules/index.md) | ✅ Complete | System thinking, design review, governance, accessibility, cross-brand — from *Design System v1.0* §I, IV, IX |
 | [templates/](./templates/index.md) | ⬜ Not started | Starter templates (component doc, ADR, pattern doc) |
 | [examples/](./examples/index.md) | ⬜ Not started | Worked examples |
 | [checklists/](./checklists/index.md) | ⬜ Not started | Pre-launch / pre-PR checklists |

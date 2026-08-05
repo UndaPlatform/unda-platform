@@ -80,7 +80,7 @@ See `brand/governance.md` and `design-system/rules/` for the standards new addit
 | 2. Tokens | ✅ Complete — literal values sourced from *Design System v1.0* |
 | 3. Components | ✅ Complete — sourced from *Design System v1.0* §V |
 | 4. Patterns | ✅ Complete — sourced from *Design System v1.0* §V |
-| 5. Rules | ⬜ Not started |
+| 5. Rules | ✅ Complete — sourced from *Design System v1.0* §I, IV, IX |
 | 6. Engineering | ⬜ Not started |
 | 7. `CLAUDE.md` | ⬜ Not started |
 | 8. This README | ✅ (you're reading it — will be revised as later phases land) |
