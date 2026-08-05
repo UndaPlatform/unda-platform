@@ -10,6 +10,7 @@ Brand strategy, positioning, voice, architecture, experience, and governance —
 - [positioning.md](./positioning.md) — Market position, value proposition, competitive advantage, target audience
 - [voice-and-tone.md](./voice-and-tone.md) — Brand voice principles, tone by context, writing style, vocabulary
 - [architecture.md](./architecture.md) — Branded House model, division relationships, naming conventions
+- [logo-system.md](./logo-system.md) — Symbol construction, wordmark & lockups, clear space, color variations, misuse — from *Logo Design System v1.0*
 - [personality.md](./personality.md) — Personality traits, archetype, emotional experience
 - [experience-principles.md](./experience-principles.md) — Brand experience principles across every touchpoint
 - [governance.md](./governance.md) — Ownership, approval workflows, compliance, audits, asset management

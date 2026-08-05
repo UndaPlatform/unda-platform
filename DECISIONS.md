@@ -133,3 +133,15 @@ Format: each entry records context, the decision, and consequences. Entries are 
 **Decision:** Treat `Creative Direction v1.0` and `Design System v1.0` as the authoritative source for all subsequent Design OS phases, superseding reconstruction/inference where the two differ. Retroactively populated `creative-direction/` (previously an empty stub — no source text had been pasted for it) directly from `Creative Direction v1.0`. Wrote `design-system/tokens/` directly from `Design System v1.0` §II–III's literal values rather than proposing placeholder numbers. Phase 1 (`foundations/`) required no rework — its philosophy-only scope was already consistent with the literal tokens now in hand, validating that split. `Brand Foundations.pdf` (320 pages) also exists on disk and is substantially larger than what was pasted for Phase 1; it was not re-processed in this pass to avoid unrequested rework of already-committed, thorough Phase 1 content — reconciling it is a candidate for a future, explicitly scoped pass if discrepancies turn up.
 
 **Consequences:** Phases 3–7 (Components, Patterns, Rules, Engineering, `CLAUDE.md`) should be written directly from `Design System v1.0` §V (Component Library), §VI (Figma Library Architecture), §VII (Engineering Handoff), §VIII (AI Design Rules), and §IX (Cross-Brand Usage) rather than re-derived from first principles — that source already specifies most of this content at the needed level of detail.
+
+---
+
+## ADR-012: `Logo Design System v1.0` added to `brand/`
+
+**Date:** 2026-08-05
+
+**Context:** The user supplied a fifth source document, `Logo Design System v1.0` (5 pages), containing the symbol's construction geometry (8×8 grid, module/arc measurements), wordmark lockups, clear space and minimum-size rules, color variations, division lockup treatment, app icon/favicon specs, and misuse rules — none of which existed anywhere in `unda-design-os/brand/` (the earlier Brand Foundation Manual excerpt discussed logo strategy at a conceptual level only, never construction specifics).
+
+**Decision:** Add `brand/logo-system.md` transcribing this document directly, cross-linked to `design-system/tokens/color-tokens.md` (brand blue) and `design-system/tokens/radius-elevation-and-icon-tokens.md` (explicitly noting the logo's own construction-grid units are a separate, self-contained system from the interface radius scale — the two must not be conflated).
+
+**Consequences:** `brand/` now has 10 files. No other phase required rework — this was purely additive.
