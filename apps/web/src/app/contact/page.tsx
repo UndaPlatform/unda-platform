@@ -14,7 +14,7 @@ export default function ContactPage() {
       <Container className="flex flex-col gap-600 max-w-lg">
         <div className="flex flex-col gap-300">
           <Eyebrow>Get in touch</Eyebrow>
-          <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
+          <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-7xl">
             Contact us
           </h1>
           <p className="text-lg leading-8 text-text-secondary">
