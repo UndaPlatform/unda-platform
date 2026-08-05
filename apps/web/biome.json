@@ -3,7 +3,7 @@
   "root": false,
   "extends": ["../../biome.json"],
   "files": {
-    "includes": ["**", "!public"]
+    "includes": ["**", "!public", "!src/app/icon.svg"]
   },
   "css": {
     "parser": {
