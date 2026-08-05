@@ -2,14 +2,14 @@
 
 The implementable layer: foundations, tokens, components, patterns, and the rules/engineering guidance that ties them together.
 
-**Status:** Foundations complete. Everything else not started — built in order, per [ROADMAP](../README.md#build-status).
+**Status:** Foundations and Tokens complete. Everything else not started — built in order, per [ROADMAP](../README.md#build-status).
 
 ## Contents
 
 | Folder | Status | Purpose |
 |---|---|---|
 | [foundations/](./foundations/index.md) | ✅ Complete | Color, typography, spacing, grid, radius, elevation, icons, illustration, photography, motion, accessibility, dark mode |
-| [tokens/](./tokens/index.md) | ⬜ Not started | Implementable values under Foundations |
+| [tokens/](./tokens/index.md) | ✅ Complete | Implementable values under Foundations — literal from *Design System v1.0* |
 | [components/](./components/index.md) | ⬜ Not started | One file per component |
 | [patterns/](./patterns/index.md) | ⬜ Not started | Reusable page-level patterns |
 | [layouts/](./layouts/index.md) | ⬜ Not started | Page-level layout templates |

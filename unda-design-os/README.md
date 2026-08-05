@@ -75,8 +75,9 @@ See `brand/governance.md` and `design-system/rules/` for the standards new addit
 
 | Phase | Status |
 |---|---|
-| 1. Foundations | ✅ In progress this session |
-| 2. Tokens | ⬜ Not started |
+| 0. Creative Direction | ✅ Complete — sourced from *Creative Direction v1.0* |
+| 1. Foundations | ✅ Complete |
+| 2. Tokens | ✅ Complete — literal values sourced from *Design System v1.0* |
 | 3. Components | ⬜ Not started |
 | 4. Patterns | ⬜ Not started |
 | 5. Rules | ⬜ Not started |
@@ -84,8 +85,10 @@ See `brand/governance.md` and `design-system/rules/` for the standards new addit
 | 7. `CLAUDE.md` | ⬜ Not started |
 | 8. This README | ✅ (you're reading it — will be revised as later phases land) |
 
+> Foundations and Tokens were originally drafted from a pasted excerpt of the Brand Foundation Manual, which described design choices (Royal Blue, General Sans/Geist/Geist Mono, 8pt grid) without literal values. The full source PDFs — *Creative Direction v1.0* and *Design System v1.0* — were subsequently located and read in full; `creative-direction/` and `design-system/tokens/` are built directly from their literal content (OKLCH color values, exact type/spacing/motion scales, full component/engineering/AI-rules specs), not reconstructed. See `../DECISIONS.md` (ADR-011). Later phases (Components, Patterns, Rules, Engineering, `CLAUDE.md`) will draw directly from *Design System v1.0* §V–IX, which already specifies them in detail.
+
 ## Future roadmap
 
-- Fill in Tokens → Components → Patterns → Rules → Engineering, in that order, per phase.
+- Fill in Components → Patterns → Rules → Engineering, in that order, per phase, using *Design System v1.0* §V–IX as the primary source.
 - Once `apps/web` has real shipped UI, reconcile this OS's speculative components against what was actually built — update or retire anything that turned out wrong.
 - Eventually, `packages/design-system` and `packages/ui` in the main monorepo should implement a subset of what's documented here — starting with whatever `apps/web` actually needs first.
