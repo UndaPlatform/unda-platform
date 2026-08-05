@@ -52,7 +52,7 @@ Every folder contains an `index.md` — start there.
 
 **Engineers** — `design-system/engineering/` for implementation conventions, then the specific component/pattern doc for the exact tokens and states to implement. Don't hardcode a value that already has a token.
 
-**AI agents (including Claude Code)** — read `CLAUDE.md` in this directory first. It's the standing instruction set: never invent a color/font/spacing value, always check for an existing component before proposing a new one, always check accessibility rules.
+**AI agents (including Claude Code)** — read [`CLAUDE.md`](./CLAUDE.md) in this directory first. It's the standing instruction set: never invent a color/font/spacing value, always check for an existing component before proposing a new one, always check accessibility rules.
 
 **Product managers** — `brand/` for positioning and voice, `products/<division>/` for what's already decided about that division's direction.
 
@@ -82,7 +82,7 @@ See `brand/governance.md` and `design-system/rules/` for the standards new addit
 | 4. Patterns | ✅ Complete — sourced from *Design System v1.0* §V |
 | 5. Rules | ✅ Complete — sourced from *Design System v1.0* §I, IV, IX |
 | 6. Engineering | ✅ Complete — sourced from *Design System v1.0* §VI–VII |
-| 7. `CLAUDE.md` | ⬜ Not started |
+| 7. `CLAUDE.md` | ✅ Complete — sourced from *Design System v1.0* §VIII |
 | 8. This README | ✅ (you're reading it — will be revised as later phases land) |
 
 > Foundations and Tokens were originally drafted from a pasted excerpt of the Brand Foundation Manual, which described design choices (Royal Blue, General Sans/Geist/Geist Mono, 8pt grid) without literal values. The full source PDFs — *Creative Direction v1.0* and *Design System v1.0* — were subsequently located and read in full; `creative-direction/` and `design-system/tokens/` are built directly from their literal content (OKLCH color values, exact type/spacing/motion scales, full component/engineering/AI-rules specs), not reconstructed. See `../DECISIONS.md` (ADR-011). Later phases (Components, Patterns, Rules, Engineering, `CLAUDE.md`) will draw directly from *Design System v1.0* §V–IX, which already specifies them in detail.
