@@ -10,7 +10,7 @@ The implementable layer: foundations, tokens, components, patterns, and the rule
 |---|---|---|
 | [foundations/](./foundations/index.md) | ✅ Complete | Color, typography, spacing, grid, radius, elevation, icons, illustration, photography, motion, accessibility, dark mode |
 | [tokens/](./tokens/index.md) | ✅ Complete | Implementable values under Foundations — literal from *Design System v1.0* |
-| [components/](./components/index.md) | ⬜ Not started | One file per component |
+| [components/](./components/index.md) | ✅ Complete | One file per component — sourced from *Design System v1.0* §V |
 | [patterns/](./patterns/index.md) | ⬜ Not started | Reusable page-level patterns |
 | [layouts/](./layouts/index.md) | ⬜ Not started | Page-level layout templates |
 | [motion/](./motion/index.md) | ⬜ Not started | Concrete durations/easings beyond foundational principles |
