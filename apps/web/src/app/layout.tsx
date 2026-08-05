@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import "./globals.css";
 
 const generalSans = localFont({
@@ -24,9 +26,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unda Solutions — Coming Soon",
+  title: {
+    default: "Unda Solutions",
+    template: "%s — Unda Solutions",
+  },
   description:
-    "Unda Solutions builds digital products across creative, technology, and travel services.",
+    "Unda Solutions builds intelligent digital solutions and business services across creative, technology, and travel services.",
 };
 
 export default function RootLayout({
@@ -39,7 +44,11 @@ export default function RootLayout({
       lang="en"
       className={`${generalSans.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Header />
+        <main className="flex flex-1 flex-col">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
