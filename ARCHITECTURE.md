@@ -27,6 +27,10 @@ apps/
 packages/            shared code — created only once a pattern proves reusable (see DECISIONS.md)
 docs/                supplementary documentation
 infrastructure/      deployment and infra config
+unda-design-os/      cross-brand design knowledge base — foundations, tokens, components,
+                     patterns, rules, and engineering guidance for the whole Unda ecosystem
+                     (ADR-009, ADR-010). Reference material, not application code — apps
+                     draw from it, they don't have to consume it wholesale.
 ```
 
 The four placeholder apps were scaffolded ahead of the roadmap's normal build-first order specifically to give Vercel domains something to attach to (ADR-007). Each mirrors `apps/web`'s tooling setup (extends the root `tsconfig.base.json` and `biome.json`, pinned to the same Next.js/React/TypeScript versions) but has no business logic — just a single "coming soon" page.
@@ -48,5 +52,6 @@ Every feature in this repo should satisfy:
 - Monorepo tooling: initialized (pnpm + Turborepo).
 - `packages/` is intentionally empty. Shared UI/design-system packages are extracted only after real reuse emerges from `apps/web` — this repo follows a "build first, abstract second" approach.
 - Only the corporate site (`apps/web`) is in active development. Studio, Technologies, Travel, and Docs are scaffolded placeholders with no real content — ahead of schedule for Vercel domain setup (ADR-007), not a signal to start building them out.
+- `unda-design-os/` is a deliberate, explicitly-requested exception to build-first-abstract-second (ADR-009) — a cross-brand design knowledge base authored ahead of real product usage, at the user's request.
 
 This document should be updated whenever the architecture changes.

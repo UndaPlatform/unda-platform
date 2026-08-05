@@ -38,4 +38,4 @@ Corporate site (`undasolutions.com`) represents the parent brand across all thre
 
 ## Status
 
-No logo, color palette, or type scale has been finalized yet. This document will be filled in with concrete tokens (colors, type scale, spacing scale) once the design system is extracted in a later phase — see [DECISIONS.md](./DECISIONS.md) and [ROADMAP.md](./ROADMAP.md).
+Finalized (ADR-010). The concrete design direction — Royal Blue primary, division accent colors, General Sans / Geist / Geist Mono typography, Lucide icons, 8pt spacing grid — lives in [`unda-design-os/`](./unda-design-os/) rather than in this file. This document stays as the short summary; `unda-design-os/foundations/` is the source of truth for actual token values.

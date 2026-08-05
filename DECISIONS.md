@@ -76,6 +76,30 @@ Format: each entry records context, the decision, and consequences. Entries are 
 
 ---
 
+## ADR-009: `unda-design-os` — an explicit, requested override of "build first, abstract second"
+
+**Date:** 2026-08-05
+
+**Context:** ADR-002 established that `packages/ui`/`packages/design-system` would be extracted only after real reuse emerged from actual usage in `apps/web`. The user supplied three external documents (Brand Foundation Manual, Creative Direction, Design System v1.0) and requested a full enterprise-grade "Design OS" — foundations, tokens, 50+ documented components with per-state guidance, page patterns, and product-specific documentation for all four Unda divisions (Solutions, Technologies, Studio, Travel) — before any of those products have real UI built. This is the premature abstraction ADR-002 was written to avoid. The user was told this directly and asked to choose between scoping down to `apps/web` only, deferring entirely, or proceeding with the full multi-division scope as an explicit override. They chose to proceed with the full scope.
+
+**Decision:** Build `unda-design-os/` as a standalone top-level documentation project (sibling to `apps/`, `packages/`, `docs/`, `infrastructure/`) containing brand, creative-direction, and design-system knowledge for the entire Unda ecosystem — including divisions with no real product yet (Studio, Technologies, Travel). This is a one-time, explicitly authorized exception to build-first-abstract-second, scoped to this documentation effort only. It does **not** change the underlying rule for `packages/ui`/`packages/design-system` inside the app codebase — those remain extracted from real usage, not authored speculatively. `unda-design-os` is reference material an app *can* draw from; it is not itself application code, and populating it does not obligate any app to consume it before it's actually useful to do so.
+
+**Consequences:** A large volume of documentation will exist for components, patterns, and products that don't exist in code yet. This is a known, accepted trade-off. Built iteratively, phase by phase (Foundations → Tokens → Components → Patterns → Rules → Engineering → CLAUDE.md → README), pausing for review between phases rather than generated in one pass.
+
+---
+
+## ADR-010: Brand Foundation Manual adopted as the final design direction
+
+**Date:** 2026-08-05
+
+**Context:** CLAUDE.md's build-out of `apps/web` had been paused because the user still needed to "come up with the design system and website inspiration" (per the "coming soon" placeholder request). The attached Brand Foundation Manual makes specific, concrete design decisions: Royal Blue as the primary brand color, division accent colors (Purple/Cyan/Emerald for Studio/Technologies/Travel), General Sans for marketing/display typography, Geist for UI/product typography, Geist Mono for technical content, Lucide as the icon library, and an 8-point spacing grid with a matching border-radius scale.
+
+**Decision:** Adopt these choices as final rather than draft/reference-only. This resolves the earlier "design system not yet chosen" blocker. Future design work on `apps/web` (and any other Unda product) should use these tokens rather than re-opening the choice of color/typeface/icon library.
+
+**Consequences:** `unda-design-os/foundations/` becomes the authoritative source for these values. `BRAND.md` at the repo root should be updated to stop saying "not yet finalized" and instead point to `unda-design-os` for the concrete tokens. Once `apps/web`'s real content is built, it should consume these tokens rather than inventing new ones.
+
+---
+
 ## ADR-007: Scaffold placeholder apps for all divisions ahead of the normal build order
 
 **Date:** 2026-07-31

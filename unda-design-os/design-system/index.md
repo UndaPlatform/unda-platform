@@ -1,0 +1,29 @@
+# Design System
+
+The implementable layer: foundations, tokens, components, patterns, and the rules/engineering guidance that ties them together.
+
+**Status:** Foundations complete. Everything else not started — built in order, per [ROADMAP](../README.md#build-status).
+
+## Contents
+
+| Folder | Status | Purpose |
+|---|---|---|
+| [foundations/](./foundations/index.md) | ✅ Complete | Color, typography, spacing, grid, radius, elevation, icons, illustration, photography, motion, accessibility, dark mode |
+| [tokens/](./tokens/index.md) | ⬜ Not started | Implementable values under Foundations |
+| [components/](./components/index.md) | ⬜ Not started | One file per component |
+| [patterns/](./patterns/index.md) | ⬜ Not started | Reusable page-level patterns |
+| [layouts/](./layouts/index.md) | ⬜ Not started | Page-level layout templates |
+| [motion/](./motion/index.md) | ⬜ Not started | Concrete durations/easings beyond foundational principles |
+| [icons/](./icons/index.md) | ⬜ Not started | Icon library reference |
+| [illustrations/](./illustrations/index.md) | ⬜ Not started | Illustration library reference |
+| [accessibility/](./accessibility/index.md) | ⬜ Not started | Testing checklists, accessible interaction patterns |
+| [engineering/](./engineering/index.md) | ⬜ Not started | React/Next.js/Tailwind/TypeScript implementation guidance |
+| [prompts/](./prompts/index.md) | ⬜ Not started | AI-agent prompt templates for using this OS |
+| [rules/](./rules/index.md) | ⬜ Not started | Hard rules across layout, spacing, naming, content, etc. |
+| [templates/](./templates/index.md) | ⬜ Not started | Starter templates (component doc, ADR, pattern doc) |
+| [examples/](./examples/index.md) | ⬜ Not started | Worked examples |
+| [checklists/](./checklists/index.md) | ⬜ Not started | Pre-launch / pre-PR checklists |
+
+---
+
+[Back to Design OS root](../README.md)
