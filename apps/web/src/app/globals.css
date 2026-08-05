@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/*
+ * Light theme only, for now. An automatic `prefers-color-scheme: dark` override was tried
+ * and removed — it surprised users whose OS/browser defaults to dark mode with a dark navy
+ * background they never asked to see. Dark mode is a real, documented part of the design
+ * system (design-system/foundations/dark-mode.md) but should ship as a deliberate, tested
+ * feature — ideally a user-controlled toggle — not an automatic OS-preference switch.
+ */
 :root {
   /* Neutral scale — low-chroma cool gray, per design-system/tokens/color-tokens.md.
      neutral.0 is a soft off-white (~#fafafa), not pure white — pure white reads clinical
@@ -50,31 +57,6 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-enter: cubic-bezier(0, 0, 0.2, 1);
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Inverted neutral scale, ~15% reduced chroma on accents, per foundations/dark-mode.md */
-    --neutral-0: oklch(0.15 0.01 258);
-    --neutral-50: oklch(0.18 0.01 258);
-    --neutral-100: oklch(0.22 0.01 258);
-    --neutral-200: oklch(0.27 0.01 258);
-    --neutral-300: oklch(0.35 0.01 258);
-    --neutral-400: oklch(0.45 0.012 258);
-    --neutral-600: oklch(0.65 0.012 258);
-    --neutral-700: oklch(0.78 0.01 258);
-    --neutral-800: oklch(0.88 0.008 258);
-    --neutral-900: oklch(0.97 0.005 258);
-
-    --brand-primary: oklch(0.62 0.128 258);
-    --division-studio: oklch(0.62 0.128 305);
-    --division-tech: oklch(0.62 0.128 200);
-    --division-travel: oklch(0.62 0.128 155);
-
-    --status-success: oklch(0.62 0.128 145);
-    --status-warning: oklch(0.78 0.128 85);
-    --status-error: oklch(0.62 0.128 25);
-  }
 }
 
 @theme inline {
