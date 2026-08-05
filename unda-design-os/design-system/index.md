@@ -2,7 +2,7 @@
 
 The implementable layer: foundations, tokens, components, patterns, and the rules/engineering guidance that ties them together.
 
-**Status:** Foundations and Tokens complete. Everything else not started — built in order, per [ROADMAP](../README.md#build-status).
+**Status:** All 8 phases the user requested (Foundations → Tokens → Components → Patterns → Rules → Engineering → `CLAUDE.md` → README) are complete — see [Build status](../README.md#build-status). The remaining folders below (`layouts/`, `motion/`, `icons/`, `illustrations/`, `accessibility/`, `prompts/`, `templates/`, `examples/`, `checklists/`) are supplementary reference material the original project structure anticipated but that the two source documents (*Creative Direction v1.0*, *Design System v1.0*) don't specify in enough literal detail to fill without inventing content. They stay as stubs — deferred until a real need (an actual product build, or a new source document) justifies writing them, consistent with this monorepo's build-first-abstract-second default (ADR-002).
 
 ## Contents
 

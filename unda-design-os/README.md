@@ -4,7 +4,7 @@ The single source of design truth for the entire Unda ecosystem — Unda Solutio
 
 This is not a Figma library. It's an AI-first knowledge base meant to be read by Claude Code, designers, frontend engineers, product managers, and AI agents alike, so that no future project has to invent a color, a spacing value, a component, or a page pattern from scratch.
 
-> **Status:** under active construction. Built in phases — see [Build status](#build-status) below. Treat any phase marked "not started" as not yet authoritative; check `design-system/foundations/` first since it's the most complete.
+> **Status:** the 8-phase build is complete — see [Build status](#build-status) below. A handful of supplementary reference folders (`layouts/`, `motion/`, `icons/`, `illustrations/`, `accessibility/`, `prompts/`, `templates/`, `examples/`, `checklists/` under `design-system/`, plus `products/<division>/`) remain intentional stubs — see [`design-system/index.md`](./design-system/index.md) for why.
 
 ## Why this exists
 
@@ -83,12 +83,16 @@ See `brand/governance.md` and `design-system/rules/` for the standards new addit
 | 5. Rules | ✅ Complete — sourced from *Design System v1.0* §I, IV, IX |
 | 6. Engineering | ✅ Complete — sourced from *Design System v1.0* §VI–VII |
 | 7. `CLAUDE.md` | ✅ Complete — sourced from *Design System v1.0* §VIII |
-| 8. This README | ✅ (you're reading it — will be revised as later phases land) |
+| 8. This README | ✅ Complete — finalized now that all prior phases have landed |
 
-> Foundations and Tokens were originally drafted from a pasted excerpt of the Brand Foundation Manual, which described design choices (Royal Blue, General Sans/Geist/Geist Mono, 8pt grid) without literal values. The full source PDFs — *Creative Direction v1.0* and *Design System v1.0* — were subsequently located and read in full; `creative-direction/` and `design-system/tokens/` are built directly from their literal content (OKLCH color values, exact type/spacing/motion scales, full component/engineering/AI-rules specs), not reconstructed. See `../DECISIONS.md` (ADR-011). Later phases (Components, Patterns, Rules, Engineering, `CLAUDE.md`) will draw directly from *Design System v1.0* §V–IX, which already specifies them in detail.
+> Foundations and the initial `creative-direction/`/`design-system/tokens/` drafts began from a pasted excerpt of the Brand Foundation Manual, which described design choices (Royal Blue, General Sans/Geist/Geist Mono, 8pt grid) without literal values. The full source PDFs — *Creative Direction v1.0* and *Design System v1.0* — were subsequently located and read in full. Every phase from `creative-direction/` onward is built directly from their literal content (OKLCH color values, exact type/spacing/motion scales, a ~20-entry component library with full state/accessibility/engineering specs, Figma library architecture, engineering handoff, and an explicit AI Design Rules section) rather than reconstructed or invented. See `../DECISIONS.md` (ADR-009, ADR-010, ADR-011) for the full history of this decision.
+
+## What's deliberately still a stub
+
+`design-system/{layouts,motion,icons,illustrations,accessibility,prompts,templates,examples,checklists}/` and `products/<division>/` remain unwritten. The two source documents don't specify these in enough literal detail to fill without inventing content past what was actually given — see [`design-system/index.md`](./design-system/index.md). Fill them when a real need arises (an actual product build, or a new source document), not speculatively.
 
 ## Future roadmap
 
-- Fill in Components → Patterns → Rules → Engineering, in that order, per phase, using *Design System v1.0* §V–IX as the primary source.
-- Once `apps/web` has real shipped UI, reconcile this OS's speculative components against what was actually built — update or retire anything that turned out wrong.
-- Eventually, `packages/design-system` and `packages/ui` in the main monorepo should implement a subset of what's documented here — starting with whatever `apps/web` actually needs first.
+- Once `apps/web` has real shipped UI, reconcile this OS's documented components against what was actually built — update or retire anything that turned out wrong, and use the resulting real-world learnings to fill `design-system/examples/`.
+- Fill `products/<division>/` once Studio, Technologies, or Travel have a real product brief, not before.
+- Eventually, `packages/design-system` and `packages/ui` in the main monorepo should implement a subset of what's documented here — starting with whatever `apps/web` actually needs first (per ADR-002 — extraction still follows real usage, this OS being written doesn't change that).
