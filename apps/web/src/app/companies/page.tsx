@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
+import { Eyebrow } from "@/components/ui/eyebrow";
 
 export const metadata: Metadata = {
   title: "Companies",
@@ -34,8 +35,9 @@ export default function CompaniesPage() {
   return (
     <section className="py-1200">
       <Container className="flex flex-col gap-800">
-        <div className="flex flex-col gap-200 max-w-2xl">
-          <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
+        <div className="flex flex-col gap-300 max-w-2xl">
+          <Eyebrow>The ecosystem</Eyebrow>
+          <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
             One brand, three companies.
           </h1>
           <p className="text-lg leading-8 text-text-secondary">

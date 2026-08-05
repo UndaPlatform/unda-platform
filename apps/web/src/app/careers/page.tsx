@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
+import { Eyebrow } from "@/components/ui/eyebrow";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -23,8 +24,9 @@ export default function CareersPage() {
   return (
     <>
       <section className="py-1200">
-        <Container className="flex flex-col gap-600 max-w-2xl">
-          <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
+        <Container className="flex flex-col gap-400 max-w-2xl">
+          <Eyebrow>Join us</Eyebrow>
+          <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
             Careers at Unda
           </h1>
           <p className="text-lg leading-8 text-text-secondary">

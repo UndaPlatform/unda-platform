@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
 import { LinkCard } from "@/components/ui/card";
+import { Eyebrow } from "@/components/ui/eyebrow";
 
 const DIVISIONS = [
   {
@@ -45,20 +46,22 @@ const DIFFERENTIATORS = [
 export default function Home() {
   return (
     <>
-      <section className="py-1200">
-        <Container className="flex flex-col items-start gap-300">
-          <h1 className="font-display max-w-2xl text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
-            Design, engineering, and travel — one integrated team.
+      <section className="py-1600">
+        <Container className="flex flex-col items-start gap-400">
+          <Eyebrow>Unda Solutions</Eyebrow>
+          <h1 className="font-display max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
+            Design, engineering, and <span className="text-brand-primary">travel</span> — one
+            integrated team.
           </h1>
           <p className="max-w-xl text-lg leading-8 text-text-secondary">
             We deliver thoughtful solutions that combine technology, design, and human-centered
             thinking to help businesses move forward with confidence.
           </p>
           <div className="flex flex-wrap gap-200">
-            <Link href="/companies" className={buttonVariants()}>
+            <Link href="/companies" className={buttonVariants({ size: "lg" })}>
               Explore our companies
             </Link>
-            <Link href="/contact" className={buttonVariants({ variant: "secondary" })}>
+            <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "lg" })}>
               Get in touch
             </Link>
           </div>
@@ -67,8 +70,9 @@ export default function Home() {
 
       <section className="border-t border-border-default py-1200">
         <Container className="flex flex-col gap-600">
-          <div className="flex flex-col gap-100">
-            <h2 className="font-display text-2xl font-semibold text-text-primary sm:text-3xl">
+          <div className="flex flex-col gap-200">
+            <Eyebrow>Our companies</Eyebrow>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
               One brand, three companies
             </h2>
             <p className="max-w-xl text-base text-text-secondary">
@@ -93,9 +97,12 @@ export default function Home() {
 
       <section className="border-t border-border-default py-1200">
         <Container className="flex flex-col gap-600">
-          <h2 className="font-display text-2xl font-semibold text-text-primary sm:text-3xl">
-            Why Unda
-          </h2>
+          <div className="flex flex-col gap-200">
+            <Eyebrow>Why Unda</Eyebrow>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
+              Built to be trusted with the whole problem
+            </h2>
+          </div>
           <div className="grid grid-cols-1 gap-400 sm:grid-cols-2">
             {DIFFERENTIATORS.map((item) => (
               <div key={item.title} className="flex flex-col gap-100">
@@ -109,14 +116,15 @@ export default function Home() {
 
       <section className="border-t border-border-default py-1200">
         <Container className="flex flex-col items-start gap-300">
-          <h2 className="font-display text-2xl font-semibold text-text-primary sm:text-3xl">
+          <Eyebrow>Get started</Eyebrow>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
             Let&apos;s build something that lasts.
           </h2>
           <div className="flex flex-wrap gap-200">
-            <Link href="/contact" className={buttonVariants()}>
+            <Link href="/contact" className={buttonVariants({ size: "lg" })}>
               Contact us
             </Link>
-            <Link href="/careers" className={buttonVariants({ variant: "secondary" })}>
+            <Link href="/careers" className={buttonVariants({ variant: "secondary", size: "lg" })}>
               View careers
             </Link>
           </div>
