@@ -24,8 +24,8 @@ export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
   const active = divisions[activeIndex] ?? divisions[0]!;
 
   return (
-    <div className="grid grid-cols-1 gap-600 lg:grid-cols-2 lg:items-stretch lg:gap-800">
-      <div className="flex flex-col lg:h-full lg:justify-between">
+    <div className="grid grid-cols-1 items-center gap-600 lg:grid-cols-2 lg:gap-800">
+      <div className="flex flex-col">
         {divisions.map((division, i) => {
           const isActive = i === activeIndex;
           return (
@@ -58,7 +58,7 @@ export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
       </div>
 
       <div className="flex flex-col gap-200">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+        <div className="relative h-[280px] w-full overflow-hidden rounded-lg">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.name}
