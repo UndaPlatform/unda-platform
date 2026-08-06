@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { DuotoneImage } from "@/components/brand/duotone-image";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import type { CASE_STUDIES } from "@/lib/case-studies";
 
@@ -7,12 +7,12 @@ export function CaseStudyCard({ study }: { study: (typeof CASE_STUDIES)[number] 
     <div className="group flex flex-col gap-200">
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
         {study.image ? (
-          <Image
+          <DuotoneImage
             src={study.image.src}
             alt={study.image.alt}
             fill
             sizes="(min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+            className="h-full w-full transition-transform duration-300 ease-out group-hover:scale-105"
           />
         ) : (
           <GraphicPanel

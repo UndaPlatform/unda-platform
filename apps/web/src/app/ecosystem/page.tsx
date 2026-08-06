@@ -1,6 +1,6 @@
 import { Globe, Sparkles, Target, Users2 } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
+import { DuotoneImage } from "@/components/brand/duotone-image";
 import { EcosystemDiagram } from "@/components/brand/ecosystem-diagram";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import { Container } from "@/components/layout/container";
@@ -99,12 +99,12 @@ export default function EcosystemPage() {
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
                 {division.image ? (
-                  <Image
+                  <DuotoneImage
                     src={division.image.src}
                     alt={division.image.alt}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover"
+                    className="h-full w-full"
                   />
                 ) : (
                   <GraphicPanel className="h-full w-full" />

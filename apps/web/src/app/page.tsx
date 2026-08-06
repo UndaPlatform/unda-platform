@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DuotoneImage } from "@/components/brand/duotone-image";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
@@ -66,36 +67,42 @@ const DIFFERENTIATORS = [
 export default function Home() {
   return (
     <>
-      <section className="py-1200 sm:py-1600">
-        <Container className="grid grid-cols-1 items-center gap-800 lg:grid-cols-[1.15fr_1fr]">
-          <div className="flex flex-col items-start gap-400">
-            <Eyebrow>Built in Africa. Designed for the world.</Eyebrow>
-            <h1 className="font-display max-w-2xl text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-7xl">
-              We build systems that power modern{" "}
-              <span className="text-brand-primary">businesses.</span>
-            </h1>
-            <p className="max-w-xl text-lg leading-8 text-text-secondary">
-              Unda Solutions builds technology, products, and digital experiences that help
-              businesses grow, operate, and lead.
-            </p>
-            <div className="flex flex-wrap gap-200">
-              <Link href="/ecosystem" className={buttonVariants({ size: "lg" })}>
-                Explore Our Ecosystem →
-              </Link>
-              <Link href="/work" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-                View Our Work →
-              </Link>
-            </div>
-          </div>
-          <div className="relative aspect-square w-full overflow-hidden rounded-lg lg:aspect-[4/5]">
-            <Image
-              src={IMAGE_CREDITS.heroOfficeBuilding.src}
-              alt={IMAGE_CREDITS.heroOfficeBuilding.alt}
-              fill
-              priority
-              sizes="(min-width: 1024px) 40vw, 90vw"
-              className="object-cover"
-            />
+      <section className="pt-1200 sm:pt-1600">
+        <Container className="flex flex-col gap-600">
+          <Eyebrow>Built in Africa. Designed for the world.</Eyebrow>
+          <h1 className="font-display max-w-5xl text-6xl font-bold leading-[0.98] tracking-tight text-text-primary sm:text-8xl">
+            We build systems that power modern{" "}
+            <span className="text-brand-primary">businesses.</span>
+          </h1>
+        </Container>
+      </section>
+
+      <section className="py-800 sm:py-1200">
+        <div className="relative aspect-[16/7] w-full overflow-hidden sm:aspect-[21/8]">
+          <DuotoneImage
+            src={IMAGE_CREDITS.heroOfficeBuilding.src}
+            alt={IMAGE_CREDITS.heroOfficeBuilding.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="h-full w-full"
+          />
+        </div>
+      </section>
+
+      <section className="pb-1200 sm:pb-1600">
+        <Container className="flex flex-col items-start gap-400 sm:flex-row sm:items-end sm:justify-between">
+          <p className="max-w-xl text-lg leading-8 text-text-secondary">
+            Unda Solutions builds technology, products, and digital experiences that help businesses
+            grow, operate, and lead.
+          </p>
+          <div className="flex shrink-0 flex-wrap gap-200">
+            <Link href="/ecosystem" className={buttonVariants({ size: "lg" })}>
+              Explore Our Ecosystem →
+            </Link>
+            <Link href="/work" className={buttonVariants({ variant: "secondary", size: "lg" })}>
+              View Our Work →
+            </Link>
           </div>
         </Container>
       </section>
