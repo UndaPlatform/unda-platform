@@ -50,7 +50,7 @@ export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
                   isActive ? "text-white" : "text-white/30"
                 }`}
               >
-                {division.name.replace("Unda ", "")}
+                {division.name}
               </span>
             </a>
           );
