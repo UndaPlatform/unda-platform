@@ -15,14 +15,16 @@ const NAV_LINKS = [
 ];
 
 /**
- * Marketing header — never sticky, per design-system/components/navigation-header-sidebar-and-footer.md
- * ("sticky only in product surfaces, never marketing").
+ * Sticky with a translucent/blurred backdrop — supersedes the earlier "never sticky on
+ * marketing surfaces" rule in design-system/components/navigation-header-sidebar-and-footer.md;
+ * every premium reference site (Linear, Stripe, Vercel, Arc) keeps navigation persistent even
+ * on marketing pages. See DECISIONS.md for the correction.
  */
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-border-default">
+    <header className="sticky top-0 z-50 border-b border-border-default bg-bg-default/80 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"

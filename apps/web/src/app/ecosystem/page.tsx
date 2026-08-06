@@ -1,6 +1,5 @@
 import { Globe, Sparkles, Target, Users2 } from "lucide-react";
 import type { Metadata } from "next";
-import { DuotoneImage } from "@/components/brand/duotone-image";
 import { EcosystemDiagram } from "@/components/brand/ecosystem-diagram";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import { Container } from "@/components/layout/container";
@@ -8,7 +7,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { IconBadge } from "@/components/ui/icon-badge";
 import { Reveal } from "@/components/ui/reveal";
-import { IMAGE_CREDITS } from "@/lib/image-credits";
 
 export const metadata: Metadata = {
   title: "Ecosystem",
@@ -27,7 +25,6 @@ const DIVISIONS = [
       "Cloud & Infrastructure",
       "Data & Analytics",
     ],
-    image: IMAGE_CREDITS.techDataCenter,
   },
   {
     name: "Unda Studio",
@@ -35,7 +32,6 @@ const DIVISIONS = [
     description:
       "Product design, brand systems, and creative strategy for companies that take craft seriously.",
     capabilities: ["Product Design", "Brand Systems", "UX/UI Design", "Design Systems"],
-    image: null,
   },
   {
     name: "Unda Travel",
@@ -48,7 +44,6 @@ const DIVISIONS = [
       "Expense Management",
       "Business Mobility",
     ],
-    image: IMAGE_CREDITS.travelAirport,
   },
 ];
 
@@ -97,19 +92,7 @@ export default function EcosystemPage() {
                 i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
-                {division.image ? (
-                  <DuotoneImage
-                    src={division.image.src}
-                    alt={division.image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="h-full w-full"
-                  />
-                ) : (
-                  <GraphicPanel className="h-full w-full" />
-                )}
-              </div>
+              <GraphicPanel className="aspect-[4/3] w-full" />
               <div className="flex flex-col gap-300">
                 <Eyebrow>{`0${i + 1}`}</Eyebrow>
                 <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">

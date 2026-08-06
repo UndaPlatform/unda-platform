@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { DuotoneImage } from "@/components/brand/duotone-image";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import { EcosystemHoverList } from "@/components/home/ecosystem-hover-list";
 import { Container } from "@/components/layout/container";
@@ -10,7 +9,6 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/stagger";
 import { StatItem } from "@/components/ui/stat-item";
 import { CaseStudyCard } from "@/components/work/case-study-card";
 import { CASE_STUDIES } from "@/lib/case-studies";
-import { IMAGE_CREDITS } from "@/lib/image-credits";
 import { STATS } from "@/lib/stats";
 
 const DIVISIONS = [
@@ -18,19 +16,16 @@ const DIVISIONS = [
     name: "Unda Technologies",
     domain: "https://technologies.undasolutions.com",
     description: "Software engineering, AI & automation, cloud & infrastructure, data & analytics.",
-    image: IMAGE_CREDITS.techDataCenter,
   },
   {
     name: "Unda Studio",
     domain: "https://studio.undasolutions.com",
     description: "Product design, brand systems, UX/UI design, and design systems.",
-    image: null,
   },
   {
     name: "Unda Travel",
     domain: "https://travel.undasolutions.com",
     description: "Corporate travel, travel technology, expense management, business mobility.",
-    image: IMAGE_CREDITS.travelAirport,
   },
 ];
 
@@ -78,16 +73,7 @@ export default function Home() {
       </section>
 
       <section className="py-800 sm:py-1200">
-        <div className="relative aspect-[16/7] w-full overflow-hidden sm:aspect-[21/8]">
-          <DuotoneImage
-            src={IMAGE_CREDITS.heroOfficeBuilding.src}
-            alt={IMAGE_CREDITS.heroOfficeBuilding.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="h-full w-full"
-          />
-        </div>
+        <GraphicPanel className="aspect-[16/7] w-full rounded-none sm:aspect-[21/8]" />
       </section>
 
       <section className="pb-1200 sm:pb-1600">

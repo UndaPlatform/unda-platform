@@ -2,20 +2,18 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { DuotoneImage } from "@/components/brand/duotone-image";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 
 type Division = {
   name: string;
   domain: string;
   description: string;
-  image: { src: string; alt: string } | null;
 };
 
 /**
  * Hover/focus-driven division list — the active item goes bold white with an arrow, the
- * rest dim; the image on the right crossfades to match. Both mouse hover and keyboard focus
- * drive the same active state, so this isn't a mouse-only interaction.
+ * rest dim; the graphic panel on the right crossfades to match. Both mouse hover and keyboard
+ * focus drive the same active state, so this isn't a mouse-only interaction.
  */
 /** `divisions` must be non-empty — this renders a hover list, not an empty state. */
 export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
@@ -68,17 +66,7 @@ export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
               transition={{ duration: 0.18, ease: [0.2, 0, 0, 1] }}
               className="absolute inset-0"
             >
-              {active.image ? (
-                <DuotoneImage
-                  src={active.image.src}
-                  alt={active.image.alt}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="h-full w-full"
-                />
-              ) : (
-                <GraphicPanel className="h-full w-full" />
-              )}
+              <GraphicPanel className="h-full w-full" />
             </motion.div>
           </AnimatePresence>
         </div>
