@@ -6,6 +6,8 @@ interface FieldProps {
   id: string;
   helperText?: string;
   error?: string;
+  /** Use "light" when the field sits on a dark/colored section background. */
+  labelTone?: "default" | "light";
 }
 
 const fieldChrome =
@@ -19,13 +21,20 @@ export function TextField({
   id,
   helperText,
   error,
+  labelTone = "default",
   className,
   ...props
 }: FieldProps & InputHTMLAttributes<HTMLInputElement>) {
   const helperId = helperText || error ? `${id}-helper` : undefined;
   return (
     <div className="flex flex-col gap-100">
-      <label htmlFor={id} className="text-sm font-medium text-text-primary">
+      <label
+        htmlFor={id}
+        className={cn(
+          "text-sm font-medium",
+          labelTone === "light" ? "text-white" : "text-text-primary",
+        )}
+      >
         {label}
       </label>
       <input

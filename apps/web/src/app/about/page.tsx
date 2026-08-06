@@ -1,6 +1,5 @@
 import { Globe, Heart, Sparkles, Target } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Container } from "@/components/layout/container";
@@ -8,6 +7,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { IconBadge } from "@/components/ui/icon-badge";
 import { Reveal } from "@/components/ui/reveal";
+import { StatItem } from "@/components/ui/stat-item";
+import { STATS } from "@/lib/stats";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -27,22 +28,39 @@ export default function AboutPage() {
       <section className="py-1200 sm:py-1600">
         <Container className="grid grid-cols-1 items-center gap-800 lg:grid-cols-[1.15fr_1fr]">
           <div className="flex flex-col gap-400">
-            <Eyebrow>Who we are</Eyebrow>
+            <Eyebrow>About us</Eyebrow>
             <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-6xl">
               Builders, thinkers, and problem solvers.
             </h1>
             <p className="text-lg leading-8 text-text-secondary">
               We&apos;re on a mission to build systems that power progress and improve lives.
-              Through thoughtful design, innovative technology, and exceptional service, we build
-              systems that inspire trust, create value, and stand the test of time.
             </p>
-            <Link href="/careers" className={buttonVariants({ size: "lg" })}>
-              View Open Positions →
-            </Link>
+            <a href="#our-story" className={buttonVariants({ size: "lg" })}>
+              Our Story →
+            </a>
           </div>
           <GraphicPanel className="aspect-square w-full lg:aspect-[4/5]" />
         </Container>
       </section>
+
+      <Reveal>
+        <section id="our-story" className="border-t border-border-default py-1200">
+          <Container className="flex flex-col gap-400 max-w-2xl">
+            <Eyebrow>Our story</Eyebrow>
+            <p className="text-lg leading-8 text-text-secondary">
+              Unda Solutions exists to create intelligent solutions that improve how businesses and
+              people work, connect, and grow. Through thoughtful design, innovative technology, and
+              exceptional service, we build systems that inspire trust, create value, and stand the
+              test of time.
+            </p>
+            <p className="text-lg leading-8 text-text-secondary">
+              Rather than functioning as a pure service provider, we&apos;re building an ecosystem
+              of products, platforms, and services intended to create long-term value across Africa
+              and beyond — with the same rigor and craft as any global technology company.
+            </p>
+          </Container>
+        </section>
+      </Reveal>
 
       <Reveal>
         <section className="border-t border-border-default py-1200">
@@ -58,6 +76,16 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="border-t border-border-default py-800">
+          <Container className="flex flex-wrap justify-between gap-600">
+            {STATS.map((stat) => (
+              <StatItem key={stat.label} icon={stat.icon} value={stat.value} label={stat.label} />
+            ))}
           </Container>
         </section>
       </Reveal>

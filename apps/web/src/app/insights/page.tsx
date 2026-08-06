@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EmailCaptureForm } from "@/components/forms/email-capture-form";
 import { Container } from "@/components/layout/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/ui/reveal";
@@ -50,6 +51,26 @@ export default function InsightsPage() {
                 placeholder posts. Check back soon.
               </p>
             </div>
+          </Container>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="bg-text-primary py-1200 text-white">
+          <Container className="flex flex-col gap-300">
+            <div className="flex flex-col gap-200">
+              <Eyebrow className="text-white/60">Newsletter</Eyebrow>
+              <h2 className="font-display max-w-md text-3xl font-semibold tracking-tight sm:text-4xl">
+                Get new articles in your inbox.
+              </h2>
+            </div>
+            <EmailCaptureForm
+              idPrefix="newsletter"
+              label="Email address"
+              buttonLabel="Subscribe →"
+              successMessage="You're subscribed — thanks for reading."
+              tone="light"
+            />
           </Container>
         </section>
       </Reveal>
