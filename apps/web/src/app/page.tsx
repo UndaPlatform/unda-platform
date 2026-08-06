@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { DuotoneImage } from "@/components/brand/duotone-image";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { EcosystemHoverList } from "@/components/home/ecosystem-hover-list";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
@@ -139,52 +139,18 @@ export default function Home() {
       </Reveal>
 
       <Reveal>
-        <section className="border-t border-border-default py-1200">
-          <Container className="flex flex-col gap-600">
+        <section className="bg-text-primary py-1200 text-white sm:py-1600">
+          <Container className="flex flex-col gap-800">
             <div className="flex flex-col gap-200">
-              <Eyebrow>Our ecosystem</Eyebrow>
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
+              <Eyebrow className="text-white/60">Our ecosystem</Eyebrow>
+              <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
                 One company. Three specialized divisions.
               </h2>
             </div>
-            <StaggerGroup className="grid grid-cols-1 gap-300 sm:grid-cols-3">
-              {DIVISIONS.map((division) => (
-                <StaggerItem key={division.name}>
-                  <a
-                    href={division.domain}
-                    rel="noopener"
-                    className="group flex flex-col overflow-hidden rounded-lg bg-text-primary text-white"
-                  >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden">
-                      {division.image ? (
-                        <Image
-                          src={division.image.src}
-                          alt={division.image.alt}
-                          fill
-                          sizes="(min-width: 640px) 33vw, 100vw"
-                          className="object-cover opacity-70 transition-[opacity,transform] duration-300 ease-out group-hover:scale-105 group-hover:opacity-90"
-                        />
-                      ) : (
-                        <GraphicPanel
-                          tone="dark"
-                          className="h-full w-full rounded-none transition-transform duration-300 ease-out group-hover:scale-105"
-                        />
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-100 p-300">
-                      <p className="font-display text-lg font-semibold">{division.name}</p>
-                      <p className="text-sm text-white/70">{division.description}</p>
-                      <span className="mt-100 text-sm text-white underline underline-offset-4">
-                        Explore →
-                      </span>
-                    </div>
-                  </a>
-                </StaggerItem>
-              ))}
-            </StaggerGroup>
+            <EcosystemHoverList divisions={DIVISIONS} />
             <Link
               href="/ecosystem"
-              className="text-sm text-brand-primary underline underline-offset-4 hover:no-underline"
+              className="text-sm text-white underline underline-offset-4 hover:no-underline"
             >
               Discover our ecosystem →
             </Link>
