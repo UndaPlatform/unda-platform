@@ -24,8 +24,8 @@ export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
   const active = divisions[activeIndex] ?? divisions[0]!;
 
   return (
-    <div className="grid grid-cols-1 items-center gap-600 lg:grid-cols-2 lg:gap-800">
-      <div className="flex flex-col">
+    <div className="grid grid-cols-1 gap-600 lg:grid-cols-2 lg:items-stretch lg:gap-800">
+      <div className="flex flex-col lg:h-full lg:justify-between">
         {divisions.map((division, i) => {
           const isActive = i === activeIndex;
           return (
