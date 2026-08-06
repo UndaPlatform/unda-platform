@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unda Solutions — Coming Soon",
+  title: "Unda Solutions",
   description:
-    "Unda Solutions builds technology, products, and digital experiences that help businesses grow, operate, and lead.",
+    "Unda Solutions is a technology company building digital products across multiple industries.",
 };
 
 export default function RootLayout({
