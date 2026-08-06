@@ -4,24 +4,23 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/ui/reveal";
 
 export const metadata: Metadata = {
-  title: "Our Work",
-  description: "Solutions that solve real problems.",
+  title: "Insights",
+  description: "Ideas, stories, and insights from the Unda Solutions team.",
 };
 
-const FILTERS = ["All", "Technologies", "Studio", "Travel"];
+const FILTERS = ["All", "Engineering", "Design", "Business", "Travel", "Company"];
 
-export default function WorkPage() {
+export default function InsightsPage() {
   return (
     <>
       <section className="py-1200 sm:py-1600">
         <Container className="flex flex-col gap-400 max-w-2xl">
-          <Eyebrow>Our work</Eyebrow>
+          <Eyebrow>Insights</Eyebrow>
           <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-6xl">
-            Solutions that solve real problems.
+            Ideas, stories, and insights from our team.
           </h1>
           <p className="text-lg leading-8 text-text-secondary">
-            We partner with ambitious organizations to design and build systems that create
-            measurable impact and drive growth.
+            Thoughts on technology, design, business, and the future.
           </p>
         </Container>
       </section>
@@ -43,11 +42,12 @@ export default function WorkPage() {
             </div>
 
             <div className="flex flex-col gap-200 rounded-lg border border-border-default p-800 text-center">
-              <p className="text-lg font-semibold text-text-primary">Case studies are on the way</p>
+              <p className="text-lg font-semibold text-text-primary">
+                The first articles are being written
+              </p>
               <p className="mx-auto max-w-md text-base text-text-secondary">
-                We&apos;re early — real projects will appear here as engagements ship, framed as
-                problem, approach, and measurable outcome. We&apos;d rather wait than show
-                placeholder work.
+                We&apos;d rather publish something worth reading than fill this page with
+                placeholder posts. Check back soon.
               </p>
             </div>
           </Container>

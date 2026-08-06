@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { UndaSymbol } from "@/components/brand/unda-symbol";
 import { Container } from "@/components/layout/container";
+import { buttonVariants } from "@/components/ui/button";
 
 const NAV_LINKS = [
-  { href: "/about", label: "About Us" },
-  { href: "/companies", label: "Companies" },
-  { href: "/work", label: "Our Work" },
+  { href: "/ecosystem", label: "Ecosystem" },
+  { href: "/work", label: "Work" },
+  { href: "/insights", label: "Insights" },
+  { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact Us" },
 ];
 
 /**
@@ -25,11 +26,16 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus rounded-sm"
+          className="flex items-center gap-100 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus"
         >
-          <UndaSymbol className="h-6 w-6 text-brand-primary" />
-          <span className="font-display text-base font-semibold text-text-primary">
-            Unda Solutions
+          <UndaSymbol className="h-7 w-7 text-brand-primary" />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-sm font-bold tracking-tight text-text-primary">
+              UNDA
+            </span>
+            <span className="text-[10px] font-medium tracking-widest text-text-secondary">
+              SOLUTIONS
+            </span>
           </span>
         </Link>
 
@@ -39,7 +45,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm text-text-secondary hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus rounded-sm"
+                  className="rounded-sm text-sm text-text-secondary hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus"
                 >
                   {link.label}
                 </Link>
@@ -48,9 +54,13 @@ export function Header() {
           </ul>
         </nav>
 
+        <Link href="/contact" className={`hidden md:inline-flex ${buttonVariants({ size: "sm" })}`}>
+          Contact →
+        </Link>
+
         <button
           type="button"
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border-focus md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -85,7 +95,7 @@ export function Header() {
         <nav
           id="mobile-nav"
           aria-label="Primary"
-          className="md:hidden border-t border-border-default"
+          className="border-t border-border-default md:hidden"
         >
           <Container className="flex flex-col gap-200 py-200">
             {NAV_LINKS.map((link) => (
@@ -98,6 +108,13 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              className={buttonVariants({ className: "mt-100 self-start" })}
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact →
+            </Link>
           </Container>
         </nav>
       )}

@@ -19,16 +19,22 @@ export function ContactForm() {
 
   if (status === "submitted") {
     return (
-      <p role="status" className="text-base text-text-primary">
+      <p
+        role="status"
+        className="rounded-lg border border-border-default p-400 text-base text-text-primary"
+      >
         Thanks for reaching out — we&apos;ll get back to you shortly.
       </p>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-300 max-w-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-300 rounded-lg border border-border-default p-400"
+    >
       <TextField
-        label="Name"
+        label="Full name"
         id="contact-name"
         name="name"
         type="text"
@@ -36,16 +42,29 @@ export function ContactForm() {
         autoComplete="name"
       />
       <TextField
-        label="Email"
+        label="Email address"
         id="contact-email"
         name="email"
         type="email"
         required
         autoComplete="email"
       />
-      <TextAreaField label="Message" id="contact-message" name="message" rows={5} required />
-      <Button type="submit" className="self-start">
-        Send message
+      <TextField
+        label="Company"
+        id="contact-company"
+        name="company"
+        type="text"
+        autoComplete="organization"
+      />
+      <TextAreaField
+        label="How can we help?"
+        id="contact-message"
+        name="message"
+        rows={4}
+        required
+      />
+      <Button type="submit" variant="accent" className="self-start">
+        Send Message →
       </Button>
     </form>
   );
