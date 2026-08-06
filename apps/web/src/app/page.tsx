@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/ui/reveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/stagger";
 import { StatItem } from "@/components/ui/stat-item";
 import { CaseStudyCard } from "@/components/work/case-study-card";
 import { CASE_STUDIES } from "@/lib/case-studies";
@@ -139,37 +140,41 @@ export default function Home() {
                 One company. Three specialized divisions.
               </h2>
             </div>
-            <div className="grid grid-cols-1 gap-300 sm:grid-cols-3">
+            <StaggerGroup className="grid grid-cols-1 gap-300 sm:grid-cols-3">
               {DIVISIONS.map((division) => (
-                <a
-                  key={division.name}
-                  href={division.domain}
-                  rel="noopener"
-                  className="group flex flex-col overflow-hidden rounded-lg bg-text-primary text-white"
-                >
-                  <div className="relative aspect-[4/3] w-full">
-                    {division.image ? (
-                      <Image
-                        src={division.image.src}
-                        alt={division.image.alt}
-                        fill
-                        sizes="(min-width: 640px) 33vw, 100vw"
-                        className="object-cover opacity-70 transition-opacity duration-150 ease-out group-hover:opacity-90"
-                      />
-                    ) : (
-                      <GraphicPanel tone="dark" className="h-full w-full rounded-none" />
-                    )}
-                  </div>
-                  <div className="flex flex-col gap-100 p-300">
-                    <p className="font-display text-lg font-semibold">{division.name}</p>
-                    <p className="text-sm text-white/70">{division.description}</p>
-                    <span className="mt-100 text-sm text-white underline underline-offset-4">
-                      Explore →
-                    </span>
-                  </div>
-                </a>
+                <StaggerItem key={division.name}>
+                  <a
+                    href={division.domain}
+                    rel="noopener"
+                    className="group flex flex-col overflow-hidden rounded-lg bg-text-primary text-white"
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                      {division.image ? (
+                        <Image
+                          src={division.image.src}
+                          alt={division.image.alt}
+                          fill
+                          sizes="(min-width: 640px) 33vw, 100vw"
+                          className="object-cover opacity-70 transition-[opacity,transform] duration-300 ease-out group-hover:scale-105 group-hover:opacity-90"
+                        />
+                      ) : (
+                        <GraphicPanel
+                          tone="dark"
+                          className="h-full w-full rounded-none transition-transform duration-300 ease-out group-hover:scale-105"
+                        />
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-100 p-300">
+                      <p className="font-display text-lg font-semibold">{division.name}</p>
+                      <p className="text-sm text-white/70">{division.description}</p>
+                      <span className="mt-100 text-sm text-white underline underline-offset-4">
+                        Explore →
+                      </span>
+                    </div>
+                  </a>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
             <Link
               href="/ecosystem"
               className="text-sm text-brand-primary underline underline-offset-4 hover:no-underline"
@@ -189,11 +194,13 @@ export default function Home() {
                 Real impact. Measurable results.
               </h2>
             </div>
-            <div className="grid grid-cols-1 gap-400 sm:grid-cols-3">
+            <StaggerGroup className="grid grid-cols-1 gap-400 sm:grid-cols-3">
               {CASE_STUDIES.slice(0, 3).map((study) => (
-                <CaseStudyCard key={study.slug} study={study} />
+                <StaggerItem key={study.slug}>
+                  <CaseStudyCard study={study} />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
             <Link
               href="/work"
               className="text-sm text-brand-primary underline underline-offset-4 hover:no-underline"

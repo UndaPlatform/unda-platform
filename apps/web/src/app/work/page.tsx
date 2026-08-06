@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Reveal } from "@/components/ui/reveal";
+import { StaggerGroup, StaggerItem } from "@/components/ui/stagger";
 import { CaseStudyCard } from "@/components/work/case-study-card";
 import { CASE_STUDIES } from "@/lib/case-studies";
 
@@ -46,11 +47,13 @@ export default function WorkPage() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 gap-400 sm:grid-cols-2">
+            <StaggerGroup className="grid grid-cols-1 gap-400 sm:grid-cols-2">
               {CASE_STUDIES.map((study) => (
-                <CaseStudyCard key={study.slug} study={study} />
+                <StaggerItem key={study.slug}>
+                  <CaseStudyCard study={study} />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
 
             <p className="text-sm text-text-secondary">
               The projects above are illustrative examples pending real case studies — see

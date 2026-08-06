@@ -4,7 +4,7 @@ import type { CASE_STUDIES } from "@/lib/case-studies";
 
 export function CaseStudyCard({ study }: { study: (typeof CASE_STUDIES)[number] }) {
   return (
-    <div className="flex flex-col gap-200">
+    <div className="group flex flex-col gap-200">
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
         {study.image ? (
           <Image
@@ -12,10 +12,13 @@ export function CaseStudyCard({ study }: { study: (typeof CASE_STUDIES)[number] 
             alt={study.image.alt}
             fill
             sizes="(min-width: 640px) 50vw, 100vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
           />
         ) : (
-          <GraphicPanel tone="dark" className="h-full w-full" />
+          <GraphicPanel
+            tone="dark"
+            className="h-full w-full transition-transform duration-300 ease-out group-hover:scale-105"
+          />
         )}
       </div>
       <div className="flex flex-col gap-100">
@@ -24,7 +27,7 @@ export function CaseStudyCard({ study }: { study: (typeof CASE_STUDIES)[number] 
         </p>
         <p className="text-lg font-semibold text-text-primary">{study.name}</p>
         <p className="text-sm text-text-secondary">{study.description}</p>
-        <span className="mt-100 text-sm text-brand-primary underline underline-offset-4">
+        <span className="mt-100 text-sm text-brand-primary underline underline-offset-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5">
           View case study →
         </span>
       </div>

@@ -1,6 +1,7 @@
 import { Globe, Sparkles, Target, Users2 } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { EcosystemDiagram } from "@/components/brand/ecosystem-diagram";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
@@ -73,15 +74,18 @@ export default function EcosystemPage() {
   return (
     <>
       <section className="py-1200 sm:py-1600">
-        <Container className="flex flex-col gap-400 max-w-2xl">
-          <Eyebrow>Unda Solutions</Eyebrow>
-          <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-7xl">
-            One vision. Three businesses.
-          </h1>
-          <p className="text-lg leading-8 text-text-secondary">
-            Our divisions work together seamlessly to deliver end-to-end solutions that transform
-            businesses and create lasting value.
-          </p>
+        <Container className="grid grid-cols-1 items-center gap-800 lg:grid-cols-[1.1fr_1fr]">
+          <div className="flex flex-col gap-400">
+            <Eyebrow>Unda Solutions</Eyebrow>
+            <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-7xl">
+              One vision. Three businesses.
+            </h1>
+            <p className="text-lg leading-8 text-text-secondary">
+              Our divisions work together seamlessly to deliver end-to-end solutions that transform
+              businesses and create lasting value.
+            </p>
+          </div>
+          <EcosystemDiagram />
         </Container>
       </section>
 
