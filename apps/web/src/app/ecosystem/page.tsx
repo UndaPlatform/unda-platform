@@ -1,12 +1,13 @@
 import { Globe, Sparkles, Target, Users2 } from "lucide-react";
 import type { Metadata } from "next";
 import { EcosystemDiagram } from "@/components/brand/ecosystem-diagram";
-import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { Photo } from "@/components/brand/photo";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { IconBadge } from "@/components/ui/icon-badge";
 import { Reveal } from "@/components/ui/reveal";
+import { resolvePhoto } from "@/lib/photo";
 
 export const metadata: Metadata = {
   title: "Ecosystem",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 const DIVISIONS = [
   {
     name: "Unda Technologies",
+    slug: "technologies",
     domain: "https://technologies.undasolutions.com",
     description:
       "Software engineering, AI, and automation for businesses that need systems built to scale.",
@@ -28,6 +30,7 @@ const DIVISIONS = [
   },
   {
     name: "Unda Studio",
+    slug: "studio",
     domain: "https://studio.undasolutions.com",
     description:
       "Product design, brand systems, and creative strategy for companies that take craft seriously.",
@@ -35,6 +38,7 @@ const DIVISIONS = [
   },
   {
     name: "Unda Travel",
+    slug: "travel",
     domain: "https://travel.undasolutions.com",
     description:
       "Corporate travel and mobility technology for organizations that move people and teams.",
@@ -72,7 +76,7 @@ export default function EcosystemPage() {
         <Container className="grid grid-cols-1 items-center gap-800 lg:grid-cols-[1.1fr_1fr]">
           <div className="flex flex-col gap-400">
             <Eyebrow>Unda Solutions</Eyebrow>
-            <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-7xl">
+            <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-7xl">
               One vision. Three businesses.
             </h1>
             <p className="text-lg leading-8 text-text-secondary">
@@ -92,7 +96,12 @@ export default function EcosystemPage() {
                 i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <GraphicPanel className="aspect-[4/3] w-full" />
+              <Photo
+                src={resolvePhoto(`divisions/${division.slug}.jpg`)}
+                alt={division.name}
+                className="aspect-[4/3] w-full"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
               <div className="flex flex-col gap-300">
                 <Eyebrow>{`0${i + 1}`}</Eyebrow>
                 <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">

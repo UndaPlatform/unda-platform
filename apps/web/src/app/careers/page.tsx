@@ -1,12 +1,13 @@
 import { Heart, Sparkles, Target, Zap } from "lucide-react";
 import type { Metadata } from "next";
-import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { Photo } from "@/components/brand/photo";
 import { EmailCaptureForm } from "@/components/forms/email-capture-form";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { IconBadge } from "@/components/ui/icon-badge";
 import { Reveal } from "@/components/ui/reveal";
+import { resolvePhoto } from "@/lib/photo";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -46,7 +47,7 @@ export default function CareersPage() {
         <Container className="grid grid-cols-1 items-center gap-800 lg:grid-cols-[1.15fr_1fr]">
           <div className="flex flex-col gap-400">
             <Eyebrow>Careers</Eyebrow>
-            <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-6xl">
+            <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
               Build what&apos;s next. With the best.
             </h1>
             <p className="text-lg leading-8 text-text-secondary">
@@ -57,7 +58,13 @@ export default function CareersPage() {
               View Open Positions →
             </a>
           </div>
-          <GraphicPanel className="aspect-square w-full lg:aspect-[4/5]" />
+          <Photo
+            src={resolvePhoto("careers.jpg")}
+            alt="Life at Unda Solutions"
+            priority
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="aspect-square w-full lg:aspect-[4/5]"
+          />
         </Container>
       </section>
 

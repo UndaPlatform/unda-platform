@@ -1,10 +1,13 @@
-import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { Photo } from "@/components/brand/photo";
 import type { CASE_STUDIES } from "@/lib/case-studies";
+import { resolvePhoto } from "@/lib/photo";
 
 export function CaseStudyCard({ study }: { study: (typeof CASE_STUDIES)[number] }) {
   return (
     <div className="group flex flex-col gap-200">
-      <GraphicPanel
+      <Photo
+        src={resolvePhoto(`case-studies/${study.slug}.jpg`)}
+        alt={study.name}
         tone="dark"
         className="aspect-[4/3] w-full transition-transform duration-300 ease-out group-hover:scale-105"
       />

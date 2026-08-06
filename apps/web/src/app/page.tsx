@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { Photo } from "@/components/brand/photo";
 import { EcosystemHoverList } from "@/components/home/ecosystem-hover-list";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
@@ -9,25 +10,29 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/stagger";
 import { StatItem } from "@/components/ui/stat-item";
 import { CaseStudyCard } from "@/components/work/case-study-card";
 import { CASE_STUDIES } from "@/lib/case-studies";
+import { resolvePhoto } from "@/lib/photo";
 import { STATS } from "@/lib/stats";
 
 const DIVISIONS = [
   {
     name: "Unda Technologies",
+    slug: "technologies",
     domain: "https://technologies.undasolutions.com",
     description: "Software engineering, AI & automation, cloud & infrastructure, data & analytics.",
   },
   {
     name: "Unda Studio",
+    slug: "studio",
     domain: "https://studio.undasolutions.com",
     description: "Product design, brand systems, UX/UI design, and design systems.",
   },
   {
     name: "Unda Travel",
+    slug: "travel",
     domain: "https://travel.undasolutions.com",
     description: "Corporate travel, travel technology, expense management, business mobility.",
   },
-];
+].map((division) => ({ ...division, image: resolvePhoto(`divisions/${division.slug}.jpg`) }));
 
 const INDUSTRIES = [
   "Financial Services",
@@ -62,35 +67,38 @@ const DIFFERENTIATORS = [
 export default function Home() {
   return (
     <>
-      <section className="pt-1200 sm:pt-1600">
-        <Container className="flex flex-col gap-600">
+      <section className="pt-1200 pb-800 sm:pt-1600 sm:pb-1200">
+        <Container className="flex flex-col gap-400">
           <Eyebrow>Built in Africa. Designed for the world.</Eyebrow>
-          <h1 className="font-display max-w-5xl text-6xl font-bold leading-[0.98] tracking-tight text-text-primary sm:text-8xl">
+          <h1 className="font-display max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-7xl">
             We build systems that power modern{" "}
             <span className="text-brand-primary">businesses.</span>
           </h1>
+          <div className="flex flex-col items-start gap-400 pt-200 sm:flex-row sm:items-end sm:justify-between">
+            <p className="max-w-xl text-lg leading-8 text-text-secondary">
+              Unda Solutions builds technology, products, and digital experiences that help
+              businesses grow, operate, and lead.
+            </p>
+            <div className="flex shrink-0 flex-wrap gap-200">
+              <Link href="/ecosystem" className={buttonVariants({ size: "lg" })}>
+                Explore Our Ecosystem →
+              </Link>
+              <Link href="/work" className={buttonVariants({ variant: "secondary", size: "lg" })}>
+                View Our Work →
+              </Link>
+            </div>
+          </div>
         </Container>
-      </section>
-
-      <section className="py-800 sm:py-1200">
-        <GraphicPanel className="aspect-[16/7] w-full rounded-none sm:aspect-[21/8]" />
       </section>
 
       <section className="pb-1200 sm:pb-1600">
-        <Container className="flex flex-col items-start gap-400 sm:flex-row sm:items-end sm:justify-between">
-          <p className="max-w-xl text-lg leading-8 text-text-secondary">
-            Unda Solutions builds technology, products, and digital experiences that help businesses
-            grow, operate, and lead.
-          </p>
-          <div className="flex shrink-0 flex-wrap gap-200">
-            <Link href="/ecosystem" className={buttonVariants({ size: "lg" })}>
-              Explore Our Ecosystem →
-            </Link>
-            <Link href="/work" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-              View Our Work →
-            </Link>
-          </div>
-        </Container>
+        <Photo
+          src={resolvePhoto("hero.jpg")}
+          alt="Unda Solutions at work"
+          priority
+          sizes="100vw"
+          className="aspect-[16/7] w-full rounded-none sm:aspect-[21/8]"
+        />
       </section>
 
       <Reveal>

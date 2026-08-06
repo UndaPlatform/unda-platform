@@ -2,12 +2,13 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { Photo } from "@/components/brand/photo";
 
 type Division = {
   name: string;
   domain: string;
   description: string;
+  image: string | null;
 };
 
 /**
@@ -66,7 +67,7 @@ export function EcosystemHoverList({ divisions }: { divisions: Division[] }) {
               transition={{ duration: 0.18, ease: [0.2, 0, 0, 1] }}
               className="absolute inset-0"
             >
-              <GraphicPanel className="h-full w-full" />
+              <Photo src={active.image} alt={active.name} className="h-full w-full" sizes="600px" />
             </motion.div>
           </AnimatePresence>
         </div>

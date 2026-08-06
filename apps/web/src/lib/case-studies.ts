@@ -3,9 +3,9 @@
  * projects. Flagged explicitly in DECISIONS.md. Replace with real case studies (or confirm
  * these are real and provide actual outcomes/imagery) before this ships publicly.
  *
- * `image` is null everywhere on purpose — real project imagery isn't ready, so every card
- * renders a GraphicPanel placeholder instead of an unrelated stock photo. Swap in real image
- * objects here once real case study screenshots/photography exist.
+ * No `image` field here on purpose — CaseStudyCard resolves `public/photography/case-studies/
+ * <slug>.jpg` for each entry via resolvePhoto() and falls back to GraphicPanel until that file
+ * exists. Drop the file in with the matching slug and the real photo appears automatically.
  */
 export const CASE_STUDIES = [
   {
@@ -14,7 +14,6 @@ export const CASE_STUDIES = [
     tag: "Healthcare",
     division: "Technologies",
     description: "An AI platform improving diagnostics accuracy and patient outcomes.",
-    image: null,
   },
   {
     slug: "digital-banking-platform",
@@ -22,7 +21,6 @@ export const CASE_STUDIES = [
     tag: "FinTech",
     division: "Technologies",
     description: "A secure and scalable banking platform designed for growth.",
-    image: null,
   },
   {
     slug: "corporate-travel-platform",
@@ -30,7 +28,6 @@ export const CASE_STUDIES = [
     tag: "Travel",
     division: "Travel",
     description: "Streamlining travel booking and expense management for enterprises.",
-    image: null,
   },
   {
     slug: "learning-management-system",
@@ -38,6 +35,5 @@ export const CASE_STUDIES = [
     tag: "Education",
     division: "Studio",
     description: "An engaging platform that enhances learning and collaboration.",
-    image: null,
   },
 ] as const;

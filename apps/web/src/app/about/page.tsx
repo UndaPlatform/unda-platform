@@ -1,6 +1,6 @@
 import { Globe, Heart, Sparkles, Target } from "lucide-react";
 import type { Metadata } from "next";
-import { GraphicPanel } from "@/components/brand/graphic-panel";
+import { Photo } from "@/components/brand/photo";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Container } from "@/components/layout/container";
 import { buttonVariants } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { IconBadge } from "@/components/ui/icon-badge";
 import { Reveal } from "@/components/ui/reveal";
 import { StatItem } from "@/components/ui/stat-item";
+import { resolvePhoto } from "@/lib/photo";
 import { STATS } from "@/lib/stats";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function AboutPage() {
         <Container className="grid grid-cols-1 items-center gap-800 lg:grid-cols-[1.15fr_1fr]">
           <div className="flex flex-col gap-400">
             <Eyebrow>About us</Eyebrow>
-            <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-6xl">
+            <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
               Builders, thinkers, and problem solvers.
             </h1>
             <p className="text-lg leading-8 text-text-secondary">
@@ -39,7 +40,13 @@ export default function AboutPage() {
               Our Story →
             </a>
           </div>
-          <GraphicPanel className="aspect-square w-full lg:aspect-[4/5]" />
+          <Photo
+            src={resolvePhoto("about.jpg")}
+            alt="The Unda Solutions team"
+            priority
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="aspect-square w-full lg:aspect-[4/5]"
+          />
         </Container>
       </section>
 

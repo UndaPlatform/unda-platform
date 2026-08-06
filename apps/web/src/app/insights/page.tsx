@@ -17,7 +17,7 @@ export default function InsightsPage() {
       <section className="py-1200 sm:py-1600">
         <Container className="flex flex-col gap-400 max-w-2xl">
           <Eyebrow>Insights</Eyebrow>
-          <h1 className="font-display text-5xl font-bold leading-[1.03] tracking-tight text-text-primary sm:text-6xl">
+          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-text-primary sm:text-6xl">
             Ideas, stories, and insights from our team.
           </h1>
           <p className="text-lg leading-8 text-text-secondary">
