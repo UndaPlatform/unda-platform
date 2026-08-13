@@ -1,18 +1,32 @@
-export default function Home() {
+import { FinalCta } from "@/components/home/final-cta";
+import { Hero } from "@/components/home/hero";
+import { Preloader } from "@/components/home/preloader";
+import { SelectedWork } from "@/components/home/selected-work";
+import { ServicesSummary } from "@/components/home/services-summary";
+import { Testimonials } from "@/components/home/testimonials";
+import { WhoWeAre } from "@/components/home/who-we-are";
+import { Process } from "@/components/services/process";
+import { getHomeGlobal } from "@/lib/payload";
+
+// Home reads Selected Work, Testimonials, and the Home global (its own
+// editable text/images) from Payload — without revalidation this would
+// only pick up new admin content on the next deploy, defeating the point
+// of a CMS. See DECISIONS.md ADR-047, ADR-092.
+export const revalidate = 60;
+
+export default async function Home() {
+  const home = await getHomeGlobal();
+
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-white px-6 dark:bg-black">
-      <main className="flex max-w-xl flex-col items-center gap-4 text-center">
-        <p className="text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-          Coming soon
-        </p>
-        <h1 className="text-4xl font-semibold tracking-tight text-black dark:text-zinc-50 sm:text-5xl">
-          Unda Studio
-        </h1>
-        <p className="text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-          Brand identity, Product design, UI/UX, Graphic design, Motion design, 3D Modelling and
-          Video editing.
-        </p>
-      </main>
-    </div>
+    <>
+      <Preloader />
+      <Hero data={home.hero} />
+      <WhoWeAre data={home.whoWeAre} />
+      <SelectedWork data={home.selectedWork} />
+      <ServicesSummary data={home.servicesSummary} />
+      <Process />
+      <Testimonials />
+      <FinalCta />
+    </>
   );
 }
