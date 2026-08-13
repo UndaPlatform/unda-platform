@@ -2,8 +2,11 @@ import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { StretchText } from "@/components/motion/stretch-text";
+import type { StudioGlobalData } from "@/lib/payload";
 
-export function Founder() {
+export function Founder({ data }: { data?: StudioGlobalData["founder"] }) {
+  const photo = data?.photo;
+
   return (
     <section className="py-1200">
       <Container>
@@ -13,7 +16,7 @@ export function Founder() {
               fit="size"
               className="select-none bg-gradient-to-b from-neutral-300 to-transparent bg-clip-text font-display font-bold text-[clamp(3rem,9vw,7rem)] leading-[0.95] text-transparent"
             >
-              Meet Ademola
+              {data?.headline || "Meet Ademola"}
             </StretchText>
           </h2>
         </Reveal>
@@ -22,8 +25,8 @@ export function Founder() {
           <Reveal index={1}>
             <div className="relative aspect-square max-w-sm overflow-hidden rounded-lg border border-border-default">
               <Image
-                src="/founder.png"
-                alt="Ademola Oshingbesan, Founder of Unda Studio"
+                src={photo?.url || "/founder.png"}
+                alt={photo?.alt || "Ademola Oshingbesan, Founder of Unda Studio"}
                 fill
                 sizes="(min-width: 768px) 33vw, 100vw"
                 className="object-cover"
@@ -33,14 +36,12 @@ export function Founder() {
 
           <Reveal index={2}>
             <span className="font-display font-semibold text-h4 text-text-primary">
-              <span className="text-brand-accent-text">Founder</span>, Unda Studio
+              <span className="text-brand-accent-text">{data?.roleWord || "Founder"}</span>
+              {data?.roleRest || ", Unda Studio"}
             </span>
             <p className="mt-200 max-w-xl text-body-lg text-text-secondary">
-              Ademola Oshingbesan is a product designer, software engineer, and entrepreneur focused
-              on building AI-powered digital products. He combines product design, software
-              engineering, analytics, and AI to create technology solutions for African and global
-              users, with experience across fintech, healthtech, and other emerging technology
-              sectors.
+              {data?.bio ||
+                "Ademola Oshingbesan is a product designer, software engineer, and entrepreneur focused on building AI-powered digital products. He combines product design, software engineering, analytics, and AI to create technology solutions for African and global users, with experience across fintech, healthtech, and other emerging technology sectors."}
             </p>
           </Reveal>
         </div>

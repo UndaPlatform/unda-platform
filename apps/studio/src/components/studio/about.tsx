@@ -1,6 +1,7 @@
 import { Bot, Compass, Component, Layers, Palette, Sparkles } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
+import type { StudioGlobalData } from "@/lib/payload";
 
 const CAPABILITIES = [
   { label: "Product Design", icon: Layers },
@@ -11,15 +12,18 @@ const CAPABILITIES = [
   { label: "Product Strategy", icon: Compass },
 ];
 
-export function About() {
+export function About({ data }: { data?: StudioGlobalData["about"] }) {
   return (
     <section className="py-1200">
       <Container>
         <div className="grid grid-cols-1 gap-400 md:grid-cols-[3fr_2fr] md:items-start md:gap-600">
           <Reveal>
-            <span className="text-brand-accent-text text-caption uppercase">About us</span>
+            <span className="text-brand-accent-text text-caption uppercase">
+              {data?.eyebrow || "About us"}
+            </span>
             <h2 className="mt-150 max-w-xl font-display text-h1 text-text-primary leading-[1.15]">
-              We help ambitious startups and businesses launch sharper brands and products.
+              {data?.heading ||
+                "We help ambitious startups and businesses launch sharper brands and products."}
             </h2>
           </Reveal>
 
@@ -28,7 +32,8 @@ export function About() {
               About us
             </span>
             <p className="mt-150 max-w-sm text-body-lg text-text-secondary md:text-right">
-              With clarity, speed, and no drama, from first sketch to shipped product.
+              {data?.supporting ||
+                "With clarity, speed, and no drama, from first sketch to shipped product."}
             </p>
           </Reveal>
         </div>

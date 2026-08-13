@@ -1,7 +1,8 @@
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
+import type { StudioGlobalData } from "@/lib/payload";
 
-const VALUES = [
+const FALLBACK_VALUES = [
   {
     title: "Clarity First",
     description: "We choose the obvious solution over the impressive one, every time it wins.",
@@ -20,19 +21,21 @@ const VALUES = [
   },
 ];
 
-export function Values() {
+export function Values({ data }: { data?: StudioGlobalData["values"] }) {
+  const values = data?.items && data.items.length > 0 ? data.items : FALLBACK_VALUES;
+
   return (
     <section className="bg-neutral-900 py-1200">
       <Container>
         <Reveal>
           <span className="inline-flex items-center gap-100 text-brand-accent text-caption uppercase">
             <span className="size-1.5 rounded-full bg-brand-accent" />
-            Our values
+            {data?.eyebrow || "Our values"}
           </span>
         </Reveal>
 
         <ul className="mt-600 border-neutral-700 border-t">
-          {VALUES.map((value, i) => (
+          {values.map((value, i) => (
             <Reveal as="li" index={i} key={value.title}>
               <div className="grid grid-cols-1 items-baseline gap-150 border-neutral-700 border-b py-600 md:grid-cols-[auto_1fr_1fr] md:gap-800">
                 <span className="font-mono text-body-sm text-neutral-400">

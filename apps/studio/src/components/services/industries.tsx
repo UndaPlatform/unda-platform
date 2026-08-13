@@ -1,6 +1,7 @@
 import { Building2, Cloud, HeartHandshake, Rocket, Store, Users } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
+import type { ServicesGlobalData } from "@/lib/payload";
 
 // Company types/stages, not literal industry verticals — this is the only
 // audience description confirmed so far (see Hero and /work copy). Avoid
@@ -15,14 +16,16 @@ const INDUSTRIES = [
   { label: "Small & medium businesses", icon: Store },
 ];
 
-export function Industries() {
+export function Industries({ data }: { data?: ServicesGlobalData["industries"] }) {
   return (
     <section className="py-1200">
       <Container>
         <Reveal>
-          <span className="text-brand-accent-text text-caption uppercase">Who we work with</span>
+          <span className="text-brand-accent-text text-caption uppercase">
+            {data?.eyebrow || "Who we work with"}
+          </span>
           <h2 className="mt-150 max-w-xl font-display text-h2 text-text-primary">
-            Industries and company types we design for
+            {data?.heading || "Industries and company types we design for"}
           </h2>
         </Reveal>
 

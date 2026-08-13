@@ -1,6 +1,7 @@
 import { SiBlender, SiClaude, SiFigma, SiFramer, SiWebflow } from "@icons-pack/react-simple-icons";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
+import type { StudioGlobalData } from "@/lib/payload";
 
 // Real brand marks via @icons-pack/react-simple-icons (MIT-licensed wrapper
 // around the CC0 Simple Icons set) where one exists. A few of these tools
@@ -21,14 +22,16 @@ const TOOLS = [
   { name: "Blender", icon: SiBlender },
 ];
 
-export function DailyStack() {
+export function DailyStack({ data }: { data?: StudioGlobalData["dailyStack"] }) {
   return (
     <section className="bg-neutral-900 py-1200">
       <Container>
         <Reveal>
-          <span className="text-brand-accent text-caption uppercase">Daily stack</span>
+          <span className="text-brand-accent text-caption uppercase">
+            {data?.eyebrow || "Daily stack"}
+          </span>
           <h2 className="mt-150 max-w-xl font-display text-h2 text-neutral-0">
-            The tools we design and build with
+            {data?.heading || "The tools we design and build with"}
           </h2>
         </Reveal>
 

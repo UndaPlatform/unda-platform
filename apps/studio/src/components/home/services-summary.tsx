@@ -6,13 +6,16 @@ import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { TriangleAccent } from "@/components/ui/triangle-accent";
 import type { HomeGlobalData } from "@/lib/payload";
-import { HOME_SERVICE_TITLES, SERVICES } from "@/lib/services-data";
 
-const HOME_SERVICES = HOME_SERVICE_TITLES.map((title) =>
-  SERVICES.find((service) => service.title === title),
-).filter((service) => service !== undefined);
+export type SummaryService = { title: string; description: string; tags: string[] };
 
-export function ServicesSummary({ data }: { data?: HomeGlobalData["servicesSummary"] }) {
+export function ServicesSummary({
+  data,
+  services,
+}: {
+  data?: HomeGlobalData["servicesSummary"];
+  services: SummaryService[];
+}) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
@@ -36,7 +39,7 @@ export function ServicesSummary({ data }: { data?: HomeGlobalData["servicesSumma
         </Reveal>
 
         <ul className="mt-600 border-border-default border-t">
-          {HOME_SERVICES.map((service, i) => {
+          {services.map((service, i) => {
             const open = openIndex === i;
             return (
               <Reveal as="li" index={i} key={service.title}>

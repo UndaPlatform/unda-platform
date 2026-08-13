@@ -4,10 +4,12 @@ import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
+import type { StudioGlobalData } from "@/lib/payload";
 
-// Drafted, honest, non-committal answers — no specific pricing/policy stated
-// as fact. Meant to be edited once the user confirms real answers.
-const FAQS = [
+// Drafted, honest, non-committal fallback answers — no specific pricing/
+// policy stated as fact. Real content lives in the Studio global's FAQ
+// array (/admin); this is only the fallback if that global is empty.
+const FALLBACK_FAQS = [
   {
     question: "How long does a typical project take?",
     answer:
@@ -35,21 +37,24 @@ const FAQS = [
   },
 ];
 
-export function Faq() {
+export function Faq({ data }: { data?: StudioGlobalData["faq"] }) {
   const [openIndex, setOpenIndex] = useState(0);
+  const faqs = data?.items && data.items.length > 0 ? data.items : FALLBACK_FAQS;
 
   return (
     <section className="border-border-default border-t py-1200">
       <Container>
         <Reveal>
-          <span className="text-brand-accent-text text-caption uppercase">FAQ</span>
+          <span className="text-brand-accent-text text-caption uppercase">
+            {data?.eyebrow || "FAQ"}
+          </span>
           <h2 className="mt-150 max-w-xl font-display text-h2 text-text-primary">
-            Questions we hear a lot
+            {data?.heading || "Questions we hear a lot"}
           </h2>
         </Reveal>
 
         <ul className="mt-600 border-border-default border-t">
-          {FAQS.map((faq, i) => {
+          {faqs.map((faq, i) => {
             const open = openIndex === i;
             return (
               <Reveal as="li" index={i} key={faq.question}>
