@@ -9,9 +9,14 @@ import { CaseStudies } from "./collections/case-studies";
 import { Categories } from "./collections/categories";
 import { Media } from "./collections/media";
 import { Posts } from "./collections/posts";
+import { Services } from "./collections/services";
 import { Testimonials } from "./collections/testimonials";
 import { Users } from "./collections/users";
+import { ContactGlobal } from "./globals/contact";
 import { HomeGlobal } from "./globals/home";
+import { ServicesGlobal } from "./globals/services";
+import { StudioGlobal } from "./globals/studio";
+import { WorkGlobal } from "./globals/work";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -23,8 +28,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, CaseStudies, Testimonials, Posts],
-  globals: [HomeGlobal],
+  collections: [Users, Media, Categories, CaseStudies, Testimonials, Posts, Services],
+  globals: [HomeGlobal, StudioGlobal, ServicesGlobal, WorkGlobal, ContactGlobal],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET ?? "",
   typescript: {
