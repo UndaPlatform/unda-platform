@@ -11,9 +11,21 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.13.0",
+    "@payloadcms/db-postgres": "^3.87.1",
+    "@payloadcms/next": "^3.87.1",
+    "@payloadcms/richtext-lexical": "^3.87.1",
+    "@payloadcms/storage-vercel-blob": "^3.87.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.0.0",
+    "graphql": "^16.14.2",
+    "lucide-react": "^1.29.0",
     "next": "16.2.12",
+    "payload": "^3.87.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "sharp": "0.34.5",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.6",

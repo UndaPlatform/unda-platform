@@ -3,7 +3,7 @@
   "root": false,
   "extends": ["../../biome.json"],
   "files": {
-    "includes": ["**", "!public"]
+    "includes": ["**", "!public", "!src/app/(payload)/admin/importMap.js"]
   },
   "css": {
     "parser": {

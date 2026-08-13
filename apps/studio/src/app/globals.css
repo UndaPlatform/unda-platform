@@ -1,26 +1,250 @@
 @import "tailwindcss";
 
+/*
+ * Unda Studio design tokens — sourced from unda-design-os/design-system/tokens/.
+ * Division accent (Orange, hue 45.1) is the only token this app is allowed
+ * to override per unda-design-os/design-system/rules/cross-brand-rules.md.
+ *
+ * One scoped exception for this app's marketing surfaces only (agreed with
+ * the user, mirrors the ADR-009 precedent for documented, explicit overrides
+ * of the base system): a `--text-hero` step beyond the standard type scale.
+ *
+ * Studio's accent: Purple (ADR-010) → Orange #FF6B00 (ADR-029/030) → Azure
+ * (ADR-040) → back to Orange #FF6B00 (this ADR, ADR-042), now scoped
+ * strictly to interactive elements (buttons, links, small indicators) —
+ * not backgrounds or tints, per the user's explicit direction. The Hero's
+ * background is black-and-white (`bg-neutral-900`) with no accent tint;
+ * `--color-accent-wash`/`--color-accent-wash-strong` are still defined
+ * (some future section may want them) but are no longer applied to
+ * Philosophy/Process/Final CTA the way ADR-039 had them. At #FF6B00's
+ * lightness (0.702), white text is 2.86:1 — fails WCAG AA's 4.5:1 — so
+ * `--color-brand-accent-text` stays a separate, darker shade (0.55,
+ * ~5.2:1) for text use, same as ADR-030. `--color-brand-accent` itself
+ * (white-on-fill, e.g. button backgrounds) remains under the 4.5:1 text
+ * minimum at the user's explicit, repeated direction — see ADR-037.
+ * Everything else in this file — neutrals, spacing, radius, shadow, motion
+ * — is the shared system, unmodified.
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand & division accents — oklch(0.58 0.15 <hue>), hue is the only axis,
+     except brand-accent itself (see file header for why). */
+  --color-brand-primary: oklch(0.58 0.15 258);
+  --color-brand-accent: oklch(0.702 0.2 45.1); /* division.studio — Orange, #FF6B00 */
+  --color-brand-accent-text: oklch(0.55 0.19 45.1); /* same hue, WCAG-safe as text on white */
+  --color-accent-wash: oklch(
+    0.97 0.022 45.1
+  ); /* same hue, very light — available, not applied to sections */
+  --color-accent-wash-strong: oklch(
+    0.93 0.04 45.1
+  ); /* same hue, one step deeper — available, not applied to sections */
+
+  /* Neutral scale — low-chroma cool gray */
+  --color-neutral-0: oklch(1 0 0);
+  --color-neutral-50: oklch(0.984 0.002 258);
+  --color-neutral-100: oklch(0.967 0.003 258);
+  --color-neutral-200: oklch(0.928 0.005 258);
+  --color-neutral-300: oklch(0.869 0.006 258);
+  --color-neutral-400: oklch(0.704 0.008 258);
+  --color-neutral-600: oklch(0.494 0.01 258);
+  --color-neutral-700: oklch(0.382 0.01 258);
+  --color-neutral-800: oklch(0.269 0.009 258);
+  --color-neutral-900: oklch(0.159 0.007 258);
+
+  /* Semantic */
+  --color-bg-default: var(--color-neutral-0);
+  --color-bg-subtle: var(--color-neutral-50);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-disabled: var(--color-neutral-400);
+  --color-border-default: var(--color-neutral-200);
+  --color-border-focus: var(--color-brand-accent-text);
+  --color-status-success: oklch(0.58 0.15 145);
+  --color-status-warning: oklch(0.75 0.15 85);
+  --color-status-error: oklch(0.58 0.15 25);
+
+  /* Spacing — 4px base unit */
+  --space-50: 0.25rem;
+  --space-100: 0.5rem;
+  --space-150: 0.75rem;
+  --space-200: 1rem;
+  --space-300: 1.5rem;
+  --space-400: 2rem;
+  --space-600: 3rem;
+  --space-800: 4rem;
+  --space-1200: 6rem;
+  --space-1600: 8rem;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 999px;
+
+  /* Shadow — neutral, low-opacity only */
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.1);
+
+  /* Motion */
+  --motion-instant: 0ms;
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-slow: 240ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* type.* tokens — literal values live here so responsive/dark overrides
+     below can vary them; @theme inline (further down) only aliases these. */
+  --text-hero: 3.75rem;
+  --text-hero-leading: 1.02;
+  --text-hero-tracking: -0.02em;
+  --text-display: 3.5rem;
+  --text-display-leading: 1.05;
+  --text-display-tracking: -0.02em;
+  --text-h1: 2.5rem;
+  --text-h1-leading: 1.15;
+  --text-h1-tracking: -0.01em;
+  --text-h2: 2rem;
+  --text-h2-leading: 1.2;
+  --text-h3: 1.5rem;
+  --text-h3-leading: 1.25;
+  --text-h4: 1.25rem;
+  --text-h4-leading: 1.3;
+  --text-body-lg: 1.0625rem;
+  --text-body-lg-leading: 1.6;
+  --text-body: 0.9375rem;
+  --text-body-leading: 1.7;
+  --text-body-sm: 0.8125rem;
+  --text-body-sm-leading: 1.6;
+  --text-caption: 0.75rem;
+  --text-caption-leading: 1.5;
+  --text-caption-tracking: 0.02em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 47.99rem) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --text-hero: 2.75rem;
+    --text-display: 2.75rem;
+    --text-h1: 2rem;
+    --text-h2: 1.625rem;
   }
 }
 
+/*
+ * Dark mode intentionally does not auto-follow prefers-color-scheme here —
+ * the user wants a consistently white/light site, with any non-white pages
+ * chosen deliberately per-page rather than switched by OS preference. The
+ * design system's dark-mode token spec (unda-design-os/design-system/
+ * foundations/dark-mode.md) still applies if/when a manual toggle or a
+ * specific dark page is requested later.
+ */
+
+@theme inline {
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-accent: var(--color-brand-accent);
+  --color-brand-accent-text: var(--color-brand-accent-text);
+  --color-accent-wash: var(--color-accent-wash);
+  --color-accent-wash-strong: var(--color-accent-wash-strong);
+
+  --color-neutral-0: var(--color-neutral-0);
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+
+  --color-bg-default: var(--color-bg-default);
+  --color-bg-subtle: var(--color-bg-subtle);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-disabled: var(--color-text-disabled);
+  --color-border-default: var(--color-border-default);
+  --color-border-focus: var(--color-border-focus);
+  --color-status-success: var(--color-status-success);
+  --color-status-warning: var(--color-status-warning);
+  --color-status-error: var(--color-status-error);
+
+  --spacing-50: var(--space-50);
+  --spacing-100: var(--space-100);
+  --spacing-150: var(--space-150);
+  --spacing-200: var(--space-200);
+  --spacing-300: var(--space-300);
+  --spacing-400: var(--space-400);
+  --spacing-600: var(--space-600);
+  --spacing-800: var(--space-800);
+  --spacing-1200: var(--space-1200);
+  --spacing-1600: var(--space-1600);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --font-display: var(--font-general-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* type.* tokens — size aliased to the :root variable (so the responsive
+     override above takes effect); leading/tracking read via arbitrary
+     utilities, e.g. leading-(--text-hero-leading) tracking-(--text-hero-tracking) */
+  --text-hero: var(--text-hero);
+  --text-display: var(--text-display);
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-h3: var(--text-h3);
+  --text-h4: var(--text-h4);
+  --text-body-lg: var(--text-body-lg);
+  --text-body: var(--text-body);
+  --text-body-sm: var(--text-body-sm);
+  --text-caption: var(--text-caption);
+
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* Infinite horizontal scroll strip (Who We Are section) — the track is the
+   item list duplicated once in JSX; this just slides it exactly -50%, a
+   seamless loop. Paused under prefers-reduced-motion via motion-reduce:. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: must win over any component-level animation/transition for reduced-motion accessibility */
+    animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must win over any component-level animation/transition for reduced-motion accessibility */
+    animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must win over any component-level animation/transition for reduced-motion accessibility */
+    transition-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must win over any component-level scroll-behavior for reduced-motion accessibility */
+    scroll-behavior: auto !important;
+  }
 }
