@@ -26,7 +26,7 @@ Every color in the system belongs to exactly one of six categories. No color sho
 | Division | Accent | Represents |
 |---|---|---|
 | Unda Solutions (parent) | Royal Blue | Trust, professionalism, leadership |
-| Unda Studio | Purple | Creativity, craft, design, innovation |
+| Unda Studio | Orange | Creativity, craft, design, innovation |
 | Unda Technologies | Cyan | Engineering, technology, precision, AI |
 | Unda Travel | Emerald | Growth, journey, reliability, hospitality |
 

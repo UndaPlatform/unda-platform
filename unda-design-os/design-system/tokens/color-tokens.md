@@ -9,7 +9,7 @@ All colors are defined in **OKLCH** for perceptual consistency. Brand and divisi
 | Token | Hue | Division |
 |---|---|---|
 | `brand.primary` | 258 | Unda Solutions (Royal Blue) |
-| `division.studio` | 305 | Unda Studio (Purple) |
+| `division.studio` | 48 | Unda Studio (Orange) |
 | `division.tech` | 200 | Unda Technologies (Cyan) |
 | `division.travel` | 155 | Unda Travel (Emerald) |
 | `semantic.error` | 25 | — |

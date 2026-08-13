@@ -11,7 +11,7 @@ All four brands consume the same component library and the same base tokens. A d
 | Division | Accent | Register |
 |---|---|---|
 | Unda Solutions | Royal Blue | Corporate, institutional register |
-| Unda Studio | Purple | Most editorial/expressive register |
+| Unda Studio | Orange | Most editorial/expressive register |
 | Unda Technologies | Cyan | Developer-first, dense-when-useful |
 | Unda Travel | Emerald | Most human, image-led register |
 

@@ -4,7 +4,7 @@ Extends [Governance & versioning](../../design-system/rules/governance-and-versi
 
 ## New divisions
 
-A new division gets exactly one new thing: an accent color token, chosen to be perceptually distinct from the four existing hues (258/305/200/155 — see [Color tokens](../../design-system/tokens/color-tokens.md)) at the same lightness/chroma. It inherits everything else — grid, type system, component library, motion, logo construction — unchanged. It does not get its own symbol; see [Division lockups](../../brand/logo-system.md#5-division-lockups).
+A new division gets exactly one new thing: an accent color token, chosen to be perceptually distinct from the four existing hues (258/48/200/155 — see [Color tokens](../../design-system/tokens/color-tokens.md)) at the same lightness/chroma. It inherits everything else — grid, type system, component library, motion, logo construction — unchanged. It does not get its own symbol; see [Division lockups](../../brand/logo-system.md#5-division-lockups).
 
 ## New products
 

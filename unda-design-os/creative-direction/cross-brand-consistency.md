@@ -5,7 +5,7 @@ All four brands share one grid, one type system, and one design philosophy. Each
 | Division | Accent | Register |
 |---|---|---|
 | Unda Solutions | Royal Blue | Corporate. Confident, understated, institutional. |
-| Unda Studio | Purple | Creative. The most editorial and expressive division, within the shared system. |
+| Unda Studio | Orange | Creative. The most editorial and expressive division, within the shared system. |
 | Unda Technologies | Cyan | Technical. Developer-first, dense-when-useful, precise. |
 | Unda Travel | Emerald | Warm. The most human and image-led division; still built on the same grid. |
 
