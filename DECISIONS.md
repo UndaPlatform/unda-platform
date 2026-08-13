@@ -1121,3 +1121,74 @@ Two array fields were added specifically for images: `hero.reviewerAvatars` (rep
 `Home` (`app/(frontend)/page.tsx`) became an async Server Component that fetches the global once via a new `getHomeGlobal()` helper in `lib/payload.ts` and passes the relevant slice to each section as a `data` prop — including to `ServicesSummary`, a client component (`"use client"`, owns accordion state), which can't fetch server data itself but can receive it as a prop. Every text usage in `Hero`, `WhoWeAre`, `ServicesSummary`, and `SelectedWork` follows the pattern `data?.field || "<original hardcoded string>"` — a JS-level fallback in addition to Payload's own field-level `defaultValue`, so the page cannot render blank even in an edge case where the global document doesn't resolve as expected. `HomeGlobalData` was hand-written in `lib/payload.ts` rather than generated, matching the project's existing convention (ADR-047: the `payload generate:types` CLI crashes on this machine's Node version).
 
 **Consequences:** This is the first Payload content in the project that isn't a repeatable collection — establishes the `Global` pattern for any future single-page editable content (Studio, Services, Work hero text, if ever extended the same way). Verified end-to-end: `pnpm format`/`lint`/`check-types`/`build` all clean; live screenshots of Home (Hero and Who We Are sections, both before-fold and after scrolling into view) confirmed pixel-identical rendering to the pre-conversion hardcoded version, proving the fallback path works; `pnpm build` shows `/` still prerenders statically with the existing `revalidate = 60`, so admin edits surface within a minute, same tradeoff already accepted for Testimonials/Selected Work. Could not verify the `/admin/globals/home` screen directly — it requires the user's own login, which wasn't attempted — so the user should confirm the dashboard form itself looks and behaves as expected before relying on it. `payload`'s own CLI is still broken on this machine (same root cause as ADR-047, an ESM/CJS interop crash unrelated to this change), so type generation and any future CLI-based scripting around this global will need the same workaround already in use.
+
+---
+
+## ADR-093: The Global pattern extended to Studio, Services, Work, and Contact — every remaining page's text and images are now admin-editable
+
+**Date:** 2026-08-14
+
+**Context:** Immediately after ADR-092 shipped and the user confirmed the `/admin/globals/home` screen worked as expected, they asked to extend the same treatment to "the other pages" — clarified as: yes, the same Payload Global pattern, not a visual redesign. Followed the exact scope rule already established: text and images editable, layout/structure/icon-coupled data stays in code, shared components (rendered on more than one page) stay out of any single page's global.
+
+**Decision:** Added four more Globals, one per remaining real page, following ADR-092's exact structure (field groups per section, `defaultValue` matching current copy, JS-level `|| "fallback"` in every component on top of that):
+
+- **`src/globals/studio.ts`** (`studio-page`) — the largest: Mission, About, Values (as a real editable array — title+description per value, not just the intro text), Founder (headline, the two-tone "Founder"/", Unda Studio" label kept as two separate fields so the color split survives editing, bio, and a photo upload that falls back to the existing `/founder.png`), Daily Stack intro, Philosophy, and FAQ (also a real editable array — this directly answers the standing code comment on `FAQS` that called it "drafted... meant to be edited once the user confirms real answers"). Icon-coupled lists (Daily Stack's tool logos, About's capability pills) stay in code, same reasoning as Home's service tags.
+- **`src/globals/services.ts`** (`services-page`) — hero, the `ServicesList` intro, and the `Industries` intro. `Process` stays code-only (shared with Home).
+- **`src/globals/work.ts`** (`work-page`) — hero text only; the case studies themselves are already editable via the separate Case Studies collection.
+- **`src/globals/contact.ts`** (`contact-page`) — hero text, the contact email (now driving both the display text and the `mailto:` link from one field), and the three-item "What to expect" list as an editable array.
+
+All four pages (`app/(frontend)/studio/page.tsx`, `services/page.tsx`, `work/page.tsx`, `contact/page.tsx`) became (or already were) async Server Components fetching their global and passing slices down as `data` props, exactly matching Home's wiring. `Work` and `Contact` gained `export const revalidate = 60` (Studio and Services already had it from earlier work).
+
+**Consequences:** Every real content page in the app (Home, Studio, Services, Work, Contact) is now on the same editable-content pattern; Journal, Privacy, and Terms remain plain `ComingSoon`/static pages with no CMS content yet since they don't have real copy worth making editable at this stage. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean, dev server schema-synced without errors), and live screenshots of all four pages plus a close-up of Founder's photo/bio and the FAQ accordion, confirming pixel-identical rendering and correct fallback behavior with no console errors.
+
+---
+
+## ADR-094: The shared `SERVICES` list converted from static code to a real `services` collection — the one piece ADR-093 missed
+
+**Date:** 2026-08-14
+
+**Context:** The user caught a real gap in ADR-093: the actual per-service list on `/services` (`ServicesList` — title, description, tags, placeholder graphic, pricing/timeline row) was still reading from the static `SERVICES` array in `lib/services-data.ts`, not from Payload. This had been a deliberate exclusion in both ADR-092 and ADR-093, reasoned as "shared data used by two pages, so keep it in code" — but that reasoning was wrong for this specific case. `Process` and `FinalCta` were correctly excluded because they're the *same component* rendered on two pages with *page-specific* text that shouldn't cross-edit. `SERVICES` is different: it's the *same content* (the same 8 services, same descriptions) intentionally shown on both Home and `/services` — exactly the case for one shared, editable source of truth, not per-page copy.
+
+**Decision:** Added `src/collections/services.ts`, a real repeatable Collection (not a Global — this is 8 distinct records, not singleton page content) with `title`, `description`, a `tags` array, an `order` number for display sequencing, and a `featuredOnHome` checkbox replacing the old fixed `HOME_SERVICE_TITLES` list — an admin can now choose which services appear in Home's 4-item summary instead of that being hardcoded by title-matching. Registered it in `payload.config.ts` and added `Service` type + `getServices()` to `lib/payload.ts`, following the same hand-written-type convention as everything else (ADR-047).
+
+Since collections don't auto-populate the way a Global's `defaultValue` does, migrating existing content required an actual data migration, not just a schema change. Wrote a temporary `POST /api/seed-services` route handler that read the 8 real entries from `lib/services-data.ts` and created them as real documents (skipping if any already existed, so it's safe to have accidentally hit twice) — hit it once via `curl`, confirmed all 8 titles came back in the response, then **deleted the route file immediately after**, since an unauthenticated data-writing endpoint has no business staying live in the codebase past its one-time use.
+
+`ServicesList` (`/services`) and `ServicesSummary` (Home, via a new `services` prop threaded through `app/(frontend)/page.tsx` since `ServicesSummary` is a client component and can't fetch its own data) both now call `getServices()` first and fall back to the original static `SERVICES`/`HOME_SERVICE_TITLES` data only if the collection is empty — same fallback discipline as every other converted field this session.
+
+**Consequences:** The 8 services are now single-sourced from one collection instead of a static file duplicated in spirit across two components — editing "Product Design"'s description in `/admin` now correctly updates both Home and `/services` consistently, which is the actually-correct behavior for genuinely shared content (unlike Process/FinalCta, which stay separate on purpose). `lib/services-data.ts` remains in the codebase as the fallback/seed source, not deleted. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean) and live screenshots of both `/services`' full list and Home's featured-4 summary (including the working accordion), confirming pixel-identical rendering to the pre-migration static version and zero console errors, now reading from the real database.
+
+---
+
+## ADR-095: Confirmed — Home's compact service accordion and Services' full detail cards are meant to look different
+
+**Date:** 2026-08-14
+
+**Context:** Right after ADR-094 unified the underlying service *data*, the user flagged that the two pages still *look* different — Home renders each service as a compact numbered accordion row (title, tags, one-line description, no image), while `/services` renders a fuller card (title, a placeholder graphic, tags, description, plus a "Starts at / Timeline" row). Asked whether this was a leftover bug from the CMS migration.
+
+**Decision:** Confirmed it's not a bug — `ServicesSummary` (Home) and `ServicesList` (Services) have always been visually distinct components built for different roles (Home as a compact teaser, `/services` as the full detail page), independent of today's data-layer change. Asked the user directly whether they should be made visually consistent or kept as intentionally different; they confirmed **Home-as-compact-teaser vs. Services-as-full-detail is the right call** — no code change.
+
+**Consequences:** No file changes. Recorded here specifically so a future pass doesn't mistake this confirmed, deliberate visual difference for an inconsistency left over from ADR-094 and "fix" it unprompted.
+
+---
+
+## ADR-096: ADR-095's confirmation surfaced directly in the Payload admin, not just in DECISIONS.md
+
+**Date:** 2026-08-14
+
+**Context:** The user asked to reflect ADR-095's confirmation "on the payload dashboard" — the decision log entry alone isn't visible to someone editing content in `/admin`, and a future editor changing a service's copy there has no way to know it feeds two differently-styled sections without reading this repo's ADR history.
+
+**Decision:** Added a collection-level `admin.description` to `src/collections/services.ts`: "Shown in two places with different layouts, by design: the full list on /services (image, tags, pricing/timeline), and a compact accordion teaser for featured items on Home. Same content, same edit — the two pages are just meant to look different." Payload renders a collection's `admin.description` directly in its list view in the dashboard, so this is now visible to anyone editing Services from `/admin`, not just anyone reading `DECISIONS.md`.
+
+**Consequences:** No behavior change — purely an admin-UI documentation addition. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean). Could not screenshot the rendered admin list view directly (requires the user's own login, same limitation noted in ADR-092/093) — worth a quick check at `/admin/collections/services` to confirm the description text appears where expected.
+
+---
+
+## ADR-097: Services' image, "Starts at", and "Timeline" turned into real editable fields — they weren't actually in the collection
+
+**Date:** 2026-08-14
+
+**Context:** The user pushed back on ADR-096's fix as too shallow — a description string doesn't let anyone actually edit anything. They clarified what they meant by "the element on the dashboard": they want to edit *both* the Home teaser and the full `/services` detail card, including its image and its "Starts at" / "Timeline" row. Checking `ServicesList` against the ADR-094 migration found the real gap: the per-service placeholder graphic was (and still is, when empty) a decorative generated pattern, `<PlaceholderGraphic variant={i}>` — never a real image. And "Starts at: Custom pricing" / "Timeline: Custom timeline" were literal hardcoded JSX strings, identical for every service, not per-service data at all. ADR-094's migration had only carried over `title`/`description`/`tags` — it missed that the detail card has more editable surface than that.
+
+**Decision:** Added three fields to `src/collections/services.ts`: `image` (upload, relation to Media, optional — falls back to the existing generated placeholder graphic when empty, so no fabricated stand-in image is required), `startsAt` (text, default `"Custom pricing"`), and `timeline` (text, default `"Custom timeline"`) — both editable per service now instead of one hardcoded value shared by all eight. Updated the `Service` type and `getServices()` (now fetching at `depth: 1` so the image relation resolves to a full Media object) in `lib/payload.ts`. Rewired `ServicesList` to render the real image when present (`next/image`, falling back to `PlaceholderGraphic` otherwise) and the real `startsAt`/`timeline` values (falling back to the same "Custom pricing"/"Custom timeline" defaults as before when a service predates these fields or leaves them blank).
+
+**Consequences:** Every visible element of the `/services` detail card — title, description, tags, image, pricing, timeline — is now a real field in one place, editable from `/admin`, rather than three of six being invisible hardcoded literals. The 8 services created in ADR-094's migration predate these three new fields, so they currently read as empty/default (placeholder graphic, "Custom pricing", "Custom timeline") until edited — same visual result as before, nothing regressed. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean, schema synced without errors) and a live screenshot confirming the detail card and pricing/timeline row still render correctly with the new fallback-driven fields.
