@@ -4,7 +4,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
+      "env": ["PAYLOAD_SECRET", "DATABASE_URL", "BLOB_READ_WRITE_TOKEN"]
     },
     "dev": {
       "cache": false,
