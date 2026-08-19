@@ -34,9 +34,6 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
       : FALLBACK_SERVICES;
   const avatars = data?.reviewerAvatars ?? [];
   const headline = data?.headline || "Creative Studio";
-  const headlineWords = headline.split(" ");
-  const headlineFirstWord = headlineWords[0] ?? headline;
-  const headlineRest = headlineWords.slice(1).join(" ");
 
   return (
     <section className="flex min-h-dvh flex-col justify-center bg-neutral-900 pt-[8.5rem] pb-1200 md:pt-[11rem]">
@@ -53,21 +50,8 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
 
         <Reveal index={1}>
           <h1 className="mt-400">
-            <span className="block sm:hidden">
-              <StretchText
-                fit="size"
-                className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight"
-              >
-                {headlineFirstWord}
-              </StretchText>
-              {headlineRest && (
-                <StretchText
-                  fit="size"
-                  className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight"
-                >
-                  {headlineRest}
-                </StretchText>
-              )}
+            <span className="block whitespace-normal font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight sm:hidden">
+              {headline}
             </span>
             <span className="hidden sm:block">
               <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
