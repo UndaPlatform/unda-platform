@@ -1264,3 +1264,15 @@ Since collections don't auto-populate the way a Global's `defaultValue` does, mi
 **Decision:** Changed the mobile-only headline span's size from `text-[clamp(2.5rem,9vw,7rem)]` to `text-[clamp(3rem,15vw,4.5rem)]` in `components/home/hero.tsx` — a higher floor (3rem vs 2.5rem) and a steeper `vw` coefficient so it scales up more within typical mobile widths, capped at 4.5rem so it can't grow large enough to reintroduce the cramped, edge-to-edge look ADR-102 just removed. Desktop's separate `StretchText` span is untouched.
 
 **Consequences:** "CREATIVE STUDIO" is now visibly larger on mobile while still wrapping naturally with comfortable margin on the right (not touching the container edge) — confirmed live, not just computed. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean) and live screenshots at 390px (larger, still comfortably contained) and 1440px (unchanged).
+
+---
+
+## ADR-104: Mobile headline size increased again, slightly
+
+**Date:** 2026-08-14
+
+**Context:** Follow-up to ADR-103 — asked for one more small increase to the mobile headline size.
+
+**Decision:** Bumped the mobile-only headline span in `components/home/hero.tsx` from `text-[clamp(3rem,15vw,4.5rem)]` to `text-[clamp(3.25rem,17vw,5rem)]` — a modest step up on both the floor and ceiling. Desktop untouched.
+
+**Consequences:** Slightly larger still, confirmed live to remain comfortably within the container with no edge-to-edge crowding. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean) and live screenshots at 390px and 1440px (desktop unchanged).
