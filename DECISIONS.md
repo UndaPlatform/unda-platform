@@ -1252,3 +1252,15 @@ Since collections don't auto-populate the way a Global's `defaultValue` does, mi
 **Decision:** Dropped `StretchText` (and the `headlineFirstWord`/`headlineRest` word-splitting logic) from the mobile headline entirely. It's now a plain `<span>` at the same `text-[clamp(2.5rem,9vw,7rem)]` size already used elsewhere, with `whitespace-normal` so the browser wraps "Creative Studio" naturally at its intrinsic size — no JS measurement, no forced width-fill, no per-word stretching. At mobile's clamp-minimum size (2.5rem), the full headline doesn't fit on one line, so it still wraps to two lines on its own, just at a natural, comfortably-sized weight instead of an artificially maximized one. Desktop (`hidden sm:block`) is untouched, still the original single-line `StretchText`.
 
 **Consequences:** This removes `StretchText`/`fit="size"` from the mobile headline path entirely — the "two lines, each stretched to fill" idea from ADR-100/101 is fully superseded by "wrap naturally, don't force-fill." Worth remembering for any future full-width-headline request: `StretchText` is the right tool when the *goal itself* is an edge-to-edge look (Founder, Services/Work/Studio hero headlines, which are long enough or explicitly designed for that treatment) — it's the wrong tool when the real goal is just "let this break onto two lines," where natural wrapping at a fixed size is simpler and doesn't risk the cramped, forced look this ADR undoes. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean) and live screenshots at 390px (natural two-line wrap, no forced fill) and 1440px (unchanged).
+
+---
+
+## ADR-103: Mobile headline size increased
+
+**Date:** 2026-08-14
+
+**Context:** After ADR-102 switched the mobile headline to natural wrapping instead of forced full-width fill, the size it landed on (`clamp(2.5rem,9vw,7rem)`, clamping to its 2.5rem floor at mobile widths since `9vw` falls below that) read as too small. The user asked to increase it.
+
+**Decision:** Changed the mobile-only headline span's size from `text-[clamp(2.5rem,9vw,7rem)]` to `text-[clamp(3rem,15vw,4.5rem)]` in `components/home/hero.tsx` — a higher floor (3rem vs 2.5rem) and a steeper `vw` coefficient so it scales up more within typical mobile widths, capped at 4.5rem so it can't grow large enough to reintroduce the cramped, edge-to-edge look ADR-102 just removed. Desktop's separate `StretchText` span is untouched.
+
+**Consequences:** "CREATIVE STUDIO" is now visibly larger on mobile while still wrapping naturally with comfortable margin on the right (not touching the container edge) — confirmed live, not just computed. Verified via `pnpm format`, `pnpm lint`, `pnpm check-types`, `pnpm build` (all clean) and live screenshots at 390px (larger, still comfortably contained) and 1440px (unchanged).

@@ -50,7 +50,7 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
 
         <Reveal index={1}>
           <h1 className="mt-400">
-            <span className="block whitespace-normal font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight sm:hidden">
+            <span className="block whitespace-normal font-display font-bold text-[clamp(3rem,15vw,4.5rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight sm:hidden">
               {headline}
             </span>
             <span className="hidden sm:block">
