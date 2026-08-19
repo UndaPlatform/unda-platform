@@ -54,11 +54,17 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
         <Reveal index={1}>
           <h1 className="mt-400">
             <span className="block sm:hidden">
-              <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
+              <StretchText
+                fit="size"
+                className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight"
+              >
                 {headlineFirstWord}
               </StretchText>
               {headlineRest && (
-                <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
+                <StretchText
+                  fit="size"
+                  className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight"
+                >
                   {headlineRest}
                 </StretchText>
               )}
