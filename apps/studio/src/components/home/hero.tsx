@@ -33,6 +33,10 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
       ? data.services.map((s) => s.title)
       : FALLBACK_SERVICES;
   const avatars = data?.reviewerAvatars ?? [];
+  const headline = data?.headline || "Creative Studio";
+  const headlineWords = headline.split(" ");
+  const headlineFirstWord = headlineWords[0] ?? headline;
+  const headlineRest = headlineWords.slice(1).join(" ");
 
   return (
     <section className="flex min-h-dvh flex-col justify-center bg-neutral-900 pt-[8.5rem] pb-1200 md:pt-[11rem]">
@@ -49,15 +53,27 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
 
         <Reveal index={1}>
           <h1 className="mt-400">
-            <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
-              {data?.headline || "Creative Studio"}
-            </StretchText>
+            <span className="block sm:hidden">
+              <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
+                {headlineFirstWord}
+              </StretchText>
+              {headlineRest && (
+                <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
+                  {headlineRest}
+                </StretchText>
+              )}
+            </span>
+            <span className="hidden sm:block">
+              <StretchText className="font-display font-bold text-[clamp(2.5rem,9vw,7rem)] text-neutral-0 uppercase leading-[0.92] tracking-tight">
+                {headline}
+              </StretchText>
+            </span>
           </h1>
         </Reveal>
 
         <Reveal index={2}>
           <div className="mt-300 flex flex-col gap-300 md:flex-row-reverse md:items-center md:justify-between md:gap-400">
-            <p className="font-display font-semibold text-h4 text-neutral-0 uppercase tracking-tight">
+            <p className="font-display font-semibold text-body text-neutral-0 uppercase tracking-tight sm:text-h4">
               {data?.tagline || "For small & medium scale businesses."}
             </p>
 
@@ -92,7 +108,7 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
           </div>
         </Reveal>
 
-        <div className="mt-800 grid grid-cols-1 gap-600 md:grid-cols-[1.5fr_1fr] md:items-start">
+        <div className="mt-200 grid grid-cols-1 gap-600 md:mt-800 md:grid-cols-[1.5fr_1fr] md:items-start">
           <Reveal index={3}>
             <div>
               <p className="max-w-[52ch] text-body-lg text-neutral-400">
