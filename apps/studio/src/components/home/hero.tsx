@@ -38,7 +38,7 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
     <section className="flex min-h-dvh flex-col justify-center bg-neutral-900 pt-[8.5rem] pb-1200 md:pt-[11rem]">
       <Container>
         <Reveal>
-          <div className="flex items-center justify-between text-caption text-neutral-400 uppercase">
+          <div className="flex flex-col gap-100 text-caption text-neutral-400 uppercase sm:flex-row sm:items-center sm:justify-between sm:gap-400">
             <span>{data?.eyebrow || "A division of Unda Solutions"}</span>
             <span className="inline-flex items-center gap-100">
               <span className="size-1.5 rounded-full bg-brand-accent" />
@@ -56,7 +56,11 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
         </Reveal>
 
         <Reveal index={2}>
-          <div className="mt-300 flex flex-wrap items-center justify-between gap-x-400 gap-y-200">
+          <div className="mt-300 flex flex-col gap-300 md:flex-row-reverse md:items-center md:justify-between md:gap-400">
+            <p className="font-display font-semibold text-h4 text-neutral-0 uppercase tracking-tight">
+              {data?.tagline || "For small & medium scale businesses."}
+            </p>
+
             <div className="flex items-center gap-200">
               <span className="flex items-center" aria-hidden="true">
                 {avatars.length > 0
@@ -85,10 +89,6 @@ export function Hero({ data }: { data?: HomeGlobalData["hero"] }) {
                 {data?.ratingCaption || "Early client feedback"}
               </span>
             </div>
-
-            <p className="font-display font-semibold text-h4 text-neutral-0 uppercase tracking-tight">
-              {data?.tagline || "For small & medium scale businesses."}
-            </p>
           </div>
         </Reveal>
 
