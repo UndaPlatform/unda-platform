@@ -189,15 +189,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {/* ---------- Meta strip ---------- */}
       {metaItems.length > 0 && (
         <Reveal index={3}>
-          <div className="mt-800 border-border-default border-y">
+          <div className="mt-800 border-border-default border-y py-400">
             <Container>
-              <div className="grid grid-cols-2 md:grid-cols-4">
-                {metaItems.map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`border-border-default py-300 pr-300 ${i > 0 ? "border-l" : ""}`}
-                  >
-                    <p className="text-brand-accent-text text-caption uppercase">{item.label}</p>
+              <div className="flex flex-wrap gap-x-800 gap-y-300">
+                {metaItems.map((item) => (
+                  <div key={item.label} className="min-w-[9rem]">
+                    <p className="font-mono text-caption text-text-disabled uppercase tracking-wide">
+                      {item.label}
+                    </p>
                     <p className="mt-100 text-body text-text-primary">{item.value}</p>
                   </div>
                 ))}
@@ -249,32 +248,34 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {hasOpportunity && (
         <section id="opportunity" className="py-1200">
           <Container>
-            <Reveal>
-              <div className="flex items-start gap-300">
-                <span className="pt-100 font-mono text-body-sm text-brand-accent-text">
-                  {opportunityNumber}
-                </span>
+            <div className="grid grid-cols-1 gap-400 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-800">
+              <Reveal>
                 <div>
-                  <h2 className="font-display text-h2 text-text-primary">The Opportunity</h2>
+                  <span className="font-mono text-body-sm text-brand-accent-text">
+                    {opportunityNumber}
+                  </span>
+                  <h2 className="mt-150 font-display text-h2 text-text-primary">The Opportunity</h2>
                 </div>
+              </Reveal>
+
+              <div>
+                {caseStudy.opportunity?.lede && (
+                  <Reveal index={1}>
+                    <p className="font-display text-h3 text-text-primary leading-[1.3]">
+                      {caseStudy.opportunity.lede}
+                    </p>
+                  </Reveal>
+                )}
+
+                {caseStudy.opportunity?.body != null && (
+                  <Reveal index={2}>
+                    <div className={`mt-400 ${richTextClassName}`}>
+                      <RichText data={caseStudy.opportunity.body as RichTextData} />
+                    </div>
+                  </Reveal>
+                )}
               </div>
-            </Reveal>
-
-            {caseStudy.opportunity?.lede && (
-              <Reveal index={1}>
-                <p className="mt-600 max-w-4xl font-display text-h3 text-text-primary leading-[1.3]">
-                  {caseStudy.opportunity.lede}
-                </p>
-              </Reveal>
-            )}
-
-            {caseStudy.opportunity?.body != null && (
-              <Reveal index={2}>
-                <div className={`mt-400 ${richTextClassName}`}>
-                  <RichText data={caseStudy.opportunity.body as RichTextData} />
-                </div>
-              </Reveal>
-            )}
+            </div>
           </Container>
         </section>
       )}
@@ -283,34 +284,31 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {hasApproach && (
         <section id="approach" className="bg-neutral-100 py-1200">
           <Container>
-            <Reveal>
-              <div className="flex items-start gap-300">
-                <span className="pt-100 font-mono text-body-sm text-brand-accent-text">
-                  {approachNumber}
-                </span>
+            <div className="grid grid-cols-1 gap-400 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-800">
+              <Reveal>
                 <div>
-                  <h2 className="font-display text-h2 text-text-primary">The Approach</h2>
+                  <span className="font-mono text-body-sm text-brand-accent-text">
+                    {approachNumber}
+                  </span>
+                  <h2 className="mt-150 font-display text-h2 text-text-primary">The Approach</h2>
                 </div>
-              </div>
-            </Reveal>
-
-            {caseStudy.approachSection?.lede && (
-              <Reveal index={1}>
-                <p className="mt-600 max-w-4xl font-display text-h3 text-text-primary leading-[1.3]">
-                  {caseStudy.approachSection.lede}
-                </p>
               </Reveal>
-            )}
+
+              <div>
+                {caseStudy.approachSection?.lede && (
+                  <Reveal index={1}>
+                    <p className="font-display text-h3 text-text-primary leading-[1.3]">
+                      {caseStudy.approachSection.lede}
+                    </p>
+                  </Reveal>
+                )}
+              </div>
+            </div>
 
             {caseStudy.approachSection?.workstreams &&
               caseStudy.approachSection.workstreams.length > 0 && (
                 <Reveal index={2}>
-                  <ol
-                    className="mt-600 grid grid-cols-2 gap-px border border-border-default bg-border-default sm:grid-cols-3"
-                    style={{
-                      gridTemplateColumns: `repeat(${Math.min(caseStudy.approachSection.workstreams.length, 3)}, minmax(0, 1fr))`,
-                    }}
-                  >
+                  <ol className="mt-800 grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-px border border-border-default bg-border-default">
                     {caseStudy.approachSection.workstreams.map((step, i) => (
                       <li
                         key={step.id ?? step.label}
@@ -319,7 +317,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                         <span className="font-mono text-body-sm text-text-disabled">
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-body text-text-primary">{step.label}</span>
+                        <span className="text-body font-medium text-text-primary">
+                          {step.label}
+                        </span>
                       </li>
                     ))}
                   </ol>
@@ -410,7 +410,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <section id="impact" className="bg-neutral-900 py-1200">
           <Container>
             <Reveal>
-              <span className="font-mono text-body-sm text-neutral-400">
+              <span className="font-mono text-body-sm text-neutral-400 uppercase tracking-wide">
                 {impactNumber} — Impact
               </span>
             </Reveal>
