@@ -36,10 +36,30 @@ export type CaseStudy = {
   cover: Media;
   tagline?: string | null;
   year?: number | null;
-  gallery?: { image: Media; id?: string }[] | null;
-  problem?: RichTextContent;
-  approach?: RichTextContent;
-  outcome?: RichTextContent;
+  sector?: string | null;
+  positioning?: { not?: string | null; statement?: string | null } | null;
+  scope?: string | null;
+  engagement?: string | null;
+  opportunity?: { lede?: string | null; body?: RichTextContent } | null;
+  approachSection?: {
+    lede?: string | null;
+    workstreams?: { label: string; id?: string }[] | null;
+    caption?: string | null;
+  } | null;
+  workItems?:
+    | {
+        tag: string;
+        headline: string;
+        description?: string | null;
+        images?: { image: Media; id?: string }[] | null;
+        id?: string;
+      }[]
+    | null;
+  impact?: {
+    statement?: string | null;
+    highlight?: string | null;
+    points?: { title: string; description: string; id?: string }[] | null;
+  } | null;
   featured?: boolean | null;
   createdAt: string;
 };

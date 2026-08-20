@@ -1,6 +1,12 @@
 import type { CollectionConfig } from "payload";
 import { normalizeSlug } from "../lib/slug";
 
+// Case study detail pages (/work/[slug]) follow one fixed structural rhythm
+// — hero, meta strip, Opportunity, Approach, The Work, Impact — with only
+// the content and images varying per project. Every section below the hero
+// is optional and simply doesn't render if empty, so a case study can be
+// published with just a cover image and filled in more fully later. See
+// DECISIONS.md ADR-105.
 export const CaseStudies: CollectionConfig = {
   slug: "case-studies",
   access: {
@@ -66,28 +72,111 @@ export const CaseStudies: CollectionConfig = {
       },
     },
     {
-      name: "gallery",
-      type: "array",
+      name: "sector",
+      type: "text",
+      admin: {
+        description: 'Shown next to the title on the case study page, e.g. "Fintech, Payments".',
+      },
+    },
+    {
+      name: "positioning",
+      type: "group",
+      label: "Positioning statement",
+      admin: {
+        description:
+          'The "not this, but that" framing under the title — e.g. struck-through "Not: a mobile app redesign" above the real statement. Leave blank to skip.',
+      },
       fields: [
+        { name: "not", type: "text", label: "The reductive framing (struck through)" },
+        { name: "statement", type: "textarea", label: "The real positioning statement" },
+      ],
+    },
+    {
+      name: "scope",
+      type: "text",
+      admin: {
+        description: 'Meta strip "Scope", e.g. "Brand · Product · Web · Design System".',
+      },
+    },
+    {
+      name: "engagement",
+      type: "text",
+      admin: {
+        description: 'Meta strip "Engagement", e.g. "End-to-end design partner".',
+      },
+    },
+    {
+      name: "opportunity",
+      type: "group",
+      label: "01 — The Opportunity",
+      fields: [
+        { name: "lede", type: "textarea", label: "Lede — the problem, in one line" },
         {
-          name: "image",
-          type: "upload",
-          relationTo: "media",
-          required: true,
+          name: "body",
+          type: "richText",
+          label: "Body — context and stakes",
         },
       ],
     },
     {
-      name: "problem",
-      type: "richText",
+      name: "approachSection",
+      type: "group",
+      label: "02 — The Approach",
+      fields: [
+        { name: "lede", type: "textarea", label: "Lede" },
+        {
+          name: "workstreams",
+          type: "array",
+          label: "Workstreams (the flow diagram steps)",
+          fields: [{ name: "label", type: "text", required: true }],
+        },
+        { name: "caption", type: "textarea", label: "Closing caption" },
+      ],
     },
     {
-      name: "approach",
-      type: "richText",
+      name: "workItems",
+      type: "array",
+      label: "03 — The Work (items)",
+      admin: {
+        description:
+          "One entry per workstream shown (e.g. Brand Identity, Product Design, Website). Uses real project images only — no fabricated mockups.",
+      },
+      fields: [
+        { name: "tag", type: "text", required: true, label: 'Tag, e.g. "Brand Identity"' },
+        { name: "headline", type: "text", required: true },
+        { name: "description", type: "textarea" },
+        {
+          name: "images",
+          type: "array",
+          fields: [{ name: "image", type: "upload", relationTo: "media", required: true }],
+        },
+      ],
     },
     {
-      name: "outcome",
-      type: "richText",
+      name: "impact",
+      type: "group",
+      label: "04 — Impact",
+      fields: [
+        { name: "statement", type: "textarea", label: "Closing statement" },
+        {
+          name: "highlight",
+          type: "text",
+          label: "Highlighted phrase",
+          admin: {
+            description:
+              "A short phrase that appears verbatim in the statement above — rendered in the accent color.",
+          },
+        },
+        {
+          name: "points",
+          type: "array",
+          label: "Supporting points",
+          fields: [
+            { name: "title", type: "text", required: true },
+            { name: "description", type: "textarea", required: true },
+          ],
+        },
+      ],
     },
     {
       name: "featured",
@@ -97,5 +186,21 @@ export const CaseStudies: CollectionConfig = {
         description: "Show this case study on the Home page selected work section",
       },
     },
+    // Superseded by the structured fields above (opportunity/approachSection/
+    // workItems/impact) — kept only so the DB migration is a pure addition
+    // rather than a drop+create, which the Postgres adapter's dev-mode
+    // schema push otherwise treats as an ambiguous "was this renamed?"
+    // prompt on every request. Unused by any code; safe to actually drop in
+    // a future pass via a real migration once one is generated. See
+    // DECISIONS.md ADR-105.
+    {
+      name: "gallery",
+      type: "array",
+      admin: { hidden: true },
+      fields: [{ name: "image", type: "upload", relationTo: "media", required: true }],
+    },
+    { name: "problem", type: "richText", admin: { hidden: true } },
+    { name: "approach", type: "richText", admin: { hidden: true } },
+    { name: "outcome", type: "richText", admin: { hidden: true } },
   ],
 };
