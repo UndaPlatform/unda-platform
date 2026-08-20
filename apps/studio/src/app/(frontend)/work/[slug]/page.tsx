@@ -191,13 +191,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <Reveal index={3}>
           <div className="mt-800 border-border-default border-y py-400">
             <Container>
-              <div className="flex flex-wrap gap-x-800 gap-y-300">
+              <div className="grid grid-cols-2 gap-x-400 gap-y-300 sm:grid-cols-4 sm:gap-x-600">
                 {metaItems.map((item) => (
-                  <div key={item.label} className="min-w-[9rem]">
+                  <div key={item.label} className="min-w-0">
                     <p className="font-mono text-caption text-text-disabled uppercase tracking-wide">
                       {item.label}
                     </p>
-                    <p className="mt-100 text-body text-text-primary">{item.value}</p>
+                    <p className="mt-100 text-body text-text-primary leading-snug">{item.value}</p>
                   </div>
                 ))}
               </div>
