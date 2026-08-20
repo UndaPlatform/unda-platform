@@ -170,17 +170,20 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         {(caseStudy.positioning?.not || caseStudy.positioning?.statement) && (
           <Reveal index={2}>
-            <div className="mt-400 max-w-3xl">
-              {caseStudy.positioning?.not && (
-                <p className="text-body-lg text-text-disabled line-through">
-                  Not: {caseStudy.positioning.not}
-                </p>
-              )}
-              {caseStudy.positioning?.statement && (
-                <p className="mt-100 font-display text-h2 text-text-primary leading-[1.15]">
-                  {caseStudy.positioning.statement}
-                </p>
-              )}
+            <div className="mt-400 grid grid-cols-1 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
+              <div />
+              <div className="max-w-3xl">
+                {caseStudy.positioning?.not && (
+                  <p className="text-body-lg text-text-disabled line-through">
+                    Not: {caseStudy.positioning.not}
+                  </p>
+                )}
+                {caseStudy.positioning?.statement && (
+                  <p className="mt-100 font-display text-h3 text-text-primary leading-[1.25]">
+                    {caseStudy.positioning.statement}
+                  </p>
+                )}
+              </div>
             </div>
           </Reveal>
         )}
